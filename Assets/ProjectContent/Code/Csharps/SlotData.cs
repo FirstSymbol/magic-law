@@ -1,5 +1,5 @@
 ﻿using System;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 
 namespace ProjectContent.Code.Csharps
 {

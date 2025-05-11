@@ -1,4 +1,4 @@
-﻿namespace ProjectContent.Code.PrototypingFolder
+﻿namespace ProjectContent.Code.Csharps.Attributes
 {
   public enum AttributeActiveType
   {

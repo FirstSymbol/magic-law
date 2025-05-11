@@ -1,5 +1,6 @@
 ﻿using ProjectContent.Code.Csharps;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.PrototypingFolder.Good;
+using ProjectContent.Code.ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

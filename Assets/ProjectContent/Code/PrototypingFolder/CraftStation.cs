@@ -1,7 +1,8 @@
-﻿using System;
-using ProjectContent.Code.Csharps;
+﻿using ProjectContent.Code.Csharps;
+using ProjectContent.Code.MonoBehaviours;
+using ProjectContent.Code.PrototypingFolder.Good;
 using ProjectContent.Code.PrototypingFolder.UI;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TriInspector;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace ProjectContent.Code.PrototypingFolder
       _interactorInventory.AddItem(CraftBundle.Items[index], amount);
       Debug.Log($"Craft: {CraftBundle.Items[index].name}");
     }
+    
     public void Interact(GameObject sender)
     {
       Debug.Log("Interacting with CraftStation");

@@ -1,6 +1,6 @@
 ﻿using System;
 using ProjectContent.Code.MonoBehaviours.Creatures;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 using TriInspector;
 using UnityEngine;
 

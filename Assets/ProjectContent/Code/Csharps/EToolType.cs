@@ -1,4 +1,4 @@
-﻿namespace ProjectContent.Code.PrototypingFolder
+﻿namespace ProjectContent.Code.Csharps
 {
   public enum EToolType
   {

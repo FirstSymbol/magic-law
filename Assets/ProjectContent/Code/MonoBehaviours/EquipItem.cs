@@ -1,7 +1,7 @@
 ﻿using System;
 using ProjectContent.Code.Csharps;
+using ProjectContent.Code.Csharps.Attributes;
 using ProjectContent.Code.MonoBehaviours.Creatures;
-using ProjectContent.Code.PrototypingFolder;
 using UnityEngine;
 using static ProjectContent.Code.Csharps.Enums.ConstValues.Animation;
 

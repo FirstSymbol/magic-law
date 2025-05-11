@@ -27,7 +27,7 @@ namespace ProjectContent.Code.PrototypingFolder.UI
 
     public override void Toggle()
     {
-      if (isOpened)
+      if (IsOpened)
       {
         _windowsController.CloseWindow(this);
       }

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using ProjectContent.Code.ScriptableObjects.Base;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.ScriptableObjects
 {
   [CreateAssetMenu(fileName = "CraftBundle Default", menuName = "Configs/CraftBundle", order = 0)]
   public class CraftBundle : ScriptableObject

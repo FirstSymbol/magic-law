@@ -10,7 +10,7 @@
 
     public override void Toggle()
     {
-      if (isOpened)
+      if (IsOpened)
       {
         _windowsController.CloseWindow(this);
       }

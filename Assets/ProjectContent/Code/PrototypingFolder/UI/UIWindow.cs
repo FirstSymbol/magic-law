@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectContent.Code.PrototypingFolder.Good;
+using UnityEngine;
 using Zenject;
 
 namespace ProjectContent.Code.PrototypingFolder.UI
@@ -14,7 +15,7 @@ namespace ProjectContent.Code.PrototypingFolder.UI
     }
 
     public abstract void Initialize();
-    public bool isOpened => gameObject.activeSelf;
+    public bool IsOpened => gameObject.activeSelf;
     public void Open()
     {
       gameObject.SetActive(true);

@@ -1,3 +1,4 @@
+using ProjectContent.Code.PrototypingFolder.Good;
 using ProjectContent.Code.PrototypingFolder.UI;
 using Zenject;
 

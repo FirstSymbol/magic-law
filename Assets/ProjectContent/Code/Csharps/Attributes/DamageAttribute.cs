@@ -1,22 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using ProjectContent.Code.Csharps.Stats;
-using ProjectContent.Code.ToolsAndExtentionsScripts;
-using ProjectContent.Code.ToolsAndExtentionsScripts;
 using ProjectContent.Code.ToolsAndExtentionsScripts.DictionarySerializer;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using TriInspector;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.Csharps.Attributes
 {
-  public class ArmorAttribute : Attribute
+  [Serializable]
+  public class DamageAttribute : Attribute
   {
-
     [field: SerializeField, ReadOnly]
     public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
-      new ()
-      {
-        { new TypeReference<StatBase>(typeof(Armor)), 1f }
-      };
+      new();
   }
 }

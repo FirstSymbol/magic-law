@@ -1,6 +1,6 @@
 ﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours

@@ -1,5 +1,4 @@
-﻿using System;
-using ProjectContent.Code.Csharps;
+﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder.UI;
 using TriInspector;
 using UnityEngine;

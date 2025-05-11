@@ -1,6 +1,7 @@
 ﻿using System;
+using ProjectContent.Code.ScriptableObjects;
 
-namespace ProjectContent.Code.ScriptableObjects.Base
+namespace ProjectContent.Code.Csharps
 {
   [Serializable]
   public class CraftElement

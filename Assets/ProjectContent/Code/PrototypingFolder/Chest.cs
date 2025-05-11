@@ -1,5 +1,7 @@
 ﻿using System;
 using ProjectContent.Code.Csharps;
+using ProjectContent.Code.MonoBehaviours;
+using ProjectContent.Code.PrototypingFolder.Good;
 using ProjectContent.Code.PrototypingFolder.UI;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using UnityEngine;
@@ -39,7 +41,7 @@ namespace ProjectContent.Code.PrototypingFolder
       // Открытие UI
       
       
-      if (_storageWindow.isOpened)
+      if (_storageWindow.IsOpened)
       {
         inventoryViewLinker.Unlink();
       }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using ProjectContent.Code.PrototypingFolder.UI;
 using ProjectContent.Code.ToolsAndExtentionsScripts.DictionarySerializer;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder.UI
+namespace ProjectContent.Code.PrototypingFolder.Good
 {
   public class WindowsController : MonoBehaviour
   {
@@ -21,7 +22,7 @@ namespace ProjectContent.Code.PrototypingFolder.UI
 
       uiWindow = GetWindow<T>();
       
-      if (!uiWindow.isOpened)
+      if (!uiWindow.IsOpened)
       {
         uiWindow.Open();
         OpenedWindows.Add(uiWindow);

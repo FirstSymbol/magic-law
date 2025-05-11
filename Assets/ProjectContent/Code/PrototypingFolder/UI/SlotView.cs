@@ -1,4 +1,5 @@
 ﻿using ProjectContent.Code.Csharps;
+using ProjectContent.Code.PrototypingFolder.Good;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,6 @@ namespace ProjectContent.Code.PrototypingFolder.UI
     public Image SelectedImage;
     public Image ItemImage;
     public TextMeshProUGUI CountText;
-    private bool _isHide;
     private UIController _uiController;
     public InventoryView inventoryView;
 
@@ -43,26 +43,23 @@ namespace ProjectContent.Code.PrototypingFolder.UI
       }
       else
       {
-        if (_isHide) 
-          Show(slot);
+        if (!gameObject.activeSelf) 
+          Show();
         ItemImage.sprite = slot.SlotData.Item.Icon;
         CountText.text = "" + slot.SlotData.Count;
       }
     }
     
-    public void Show(Slot slot)
+    public void Show()
     {
-      
       CountText.gameObject.SetActive(true);
       ItemImage.gameObject.SetActive(true);
-      _isHide = false;
     }
 
     public void Hide()
     {
       CountText.gameObject.SetActive(false);
       ItemImage.gameObject.SetActive(false);
-      _isHide = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
