@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf8c3af2aefa4988b7f1207c103e3b1f, type: 3}
+  m_Name: Iron helmet - Item
+  m_EditorClassIdentifier: 
+  Name: Iron helmet
+  damage: 0
+  ItemType: 0
+  Sprite: {fileID: 21300000, guid: 379071ce2d406704cb6858fb3057826a, type: 3}
+  Icon: {fileID: 21300000, guid: 379071ce2d406704cb6858fb3057826a, type: 3}
+  MaxCount: 1
+  AnimatorController: {fileID: 0}
+  craftCoats: []
+  usageActions: []
+  alternateUsageActions: []
+  attributes:
+  - rid: 235409974918643806
+  references:
+    version: 2
+    RefIds:
+    - rid: 235409974918643806
+      type: {class: ArmorAttribute, ns: ProjectContent.Code.PrototypingFolder, asm: Assembly-CSharp}
+      data:
+        Value: 6
+        ActiveTypes: 
+        <InteractionTypes>k__BackingField:
+          list:
+          - Key:
+              typeName: ProjectContent.Code.Csharps.Stats.Armor, Assembly-CSharp,
+                Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+            Value: 1
