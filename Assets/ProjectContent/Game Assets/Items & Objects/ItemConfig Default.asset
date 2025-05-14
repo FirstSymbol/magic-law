@@ -14,20 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Test Item
   damage: 10
+  CraftCount: 1
   ItemType: 1
   Sprite: {fileID: 3743985612990017919, guid: 6b43d30707463d5419cf33d582cabeab, type: 3}
   Icon: {fileID: 3743985612990017919, guid: 6b43d30707463d5419cf33d582cabeab, type: 3}
   MaxCount: 32
   AnimatorController: {fileID: 0}
+  craftCoats: []
   usageActions:
   - rid: 5298632892089368577
   alternateUsageActions:
   - rid: 5298632892089368576
   attributes:
-  - rid: 5298632892089368668
+  - rid: 235410102765224025
   references:
     version: 2
     RefIds:
+    - rid: 235410102765224025
+      type: {class: SpeedAttribute, ns: ProjectContent.Code.Csharps.Attributes, asm: Assembly-CSharp}
+      data:
+        Value: 5
+        ActiveTypes: 02000000
+        <InteractionTypes>k__BackingField:
+          list:
+          - Key:
+              typeName: ProjectContent.Code.Csharps.Stats.Speed, Assembly-CSharp,
+                Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+            Value: 1
     - rid: 5298632892089368576
       type: {class: EditParameter, ns: ProjectContent.Code.Csharps.Item.Usages, asm: Assembly-CSharp}
       data:
@@ -42,18 +55,3 @@ MonoBehaviour:
           typeName: ProjectContent.Code.Csharps.Stats.Speed, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         changeValue: 1
-    - rid: 5298632892089368668
-      type: {class: SpeedAttribute, ns: ProjectContent.Code.PrototypingFolder, asm: Assembly-CSharp}
-      data:
-        Value: 10
-        ActiveTypes: 02000000
-        <InteractionType>k__BackingField:
-          typeName: ProjectContent.Code.Csharps.Stats.Speed, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        <Multiplier>k__BackingField: 1
-        <InteractionTypes>k__BackingField:
-          list:
-          - Key:
-              typeName: ProjectContent.Code.Csharps.Stats.Speed, Assembly-CSharp,
-                Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-            Value: 1

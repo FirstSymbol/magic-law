@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns:AddressablesGUI="UnityEditor.AddressableAssets.GUIElements" xmlns="UnityEditor.AddressableAssets.Diagnostics" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
-  <xs:include schemaLocation="GlobalNamespace.xsd" />
   <xs:import schemaLocation="UnityEditor.ShaderGraph.Drawing.xsd" namespace="UnityEditor.ShaderGraph.Drawing" />
+  <xs:include schemaLocation="GlobalNamespace.xsd" />
   <xs:import schemaLocation="UnityEditor.Rendering.xsd" namespace="UnityEditor.Rendering" />
   <xs:import schemaLocation="UnityEditor.Localization.UI.xsd" namespace="UnityEditor.Localization.UI" />
   <xs:import schemaLocation="UnityEngine.Localization.SmartFormat.PersistentVariables.xsd" namespace="UnityEngine.Localization.SmartFormat.PersistentVariables" />

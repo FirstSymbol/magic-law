@@ -1,7 +1,6 @@
-﻿using System;
-using ProjectContent.Code.Csharps;
-using ProjectContent.Code.PrototypingFolder.UI;
-using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
+﻿using ProjectContent.Code.Csharps;
+using ProjectContent.Code.MonoBehaviours;
+using ProjectContent.Code.MonoBehaviours.UI;
 using UnityEngine;
 using Zenject;
 
@@ -10,8 +9,10 @@ namespace ProjectContent.Code.PrototypingFolder
   [RequireComponent(typeof(Inventory))]
   public class Chest : Entity, IInteractableEntity
   {
-    public Inventory inventory;
-    public InventoryViewLinker inventoryViewLinker;
+    public GameObject InteractorObject { get; set; } = null;
+    public bool IsInteracting { get; set; }
+    public Inventory Inventory;
+    public InventoryViewLinker InventoryViewLinker;
     private UIController _uiController;
     private StorageWindow _storageWindow;
 
@@ -30,26 +31,35 @@ namespace ProjectContent.Code.PrototypingFolder
     private void Start()
     {
       _storageWindow = _uiController.WindowsController.GetWindow<StorageWindow>();
-      inventoryViewLinker.inventoryView = _storageWindow.inventoryView;
+      InventoryViewLinker.inventoryView = _storageWindow.inventoryView;
     }
   
     public void Interact(GameObject sender)
     {
       Debug.Log("Interacting with Chest");
       // Открытие UI
-      
-      
-      if (_storageWindow.isOpened)
+      if (_storageWindow.IsOpened)
       {
-        inventoryViewLinker.Unlink();
+        InventoryViewLinker.Unlink();
       }
       else
       {
-        inventoryViewLinker.Link();
+        InventoryViewLinker.Link();
       }
       _storageWindow.Toggle();
-      
-      
+      InteractorObject = sender;
+      IsInteracting = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+      if (other.CompareTag("InteractionTrigger") == false) return;
+      if (other.transform.parent.gameObject == InteractorObject)
+      {
+        _uiController.WindowsController.CloseWindow(_storageWindow);
+        InteractorObject = null;
+        IsInteracting = false;
+      }
     }
   }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using ProjectContent.Code.MonoBehaviours.Creatures;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 using TriInspector;
 using UnityEngine;
 
 namespace ProjectContent.Code.Csharps
 {
-  public class Inventory : MonoBehaviour
+  public class Inventory : MonoBehaviour, IStoreItem
   {
-    public Slot[] slots = new Slot[6];
+    [field: SerializeField] public Slot[] slots { get; private set; } = new Slot[6];
     public Action<int> OnSlotUpdated;
     public Action<int> OnSlotSetted;
     public Action<int> OnSlotFill;
@@ -105,5 +105,10 @@ namespace ProjectContent.Code.Csharps
     {
       
     }
+  }
+
+  public interface IStoreItem
+  {
+    public Slot[] slots { get; }
   }
 }

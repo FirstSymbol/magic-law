@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4585945912105005196}
   - component: {fileID: 150302222251767544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -145,7 +145,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e531814f12e488c8d95698354ade0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 8329464103592082146}
-  inventoryViewLinker: {fileID: 3348423736232056317}
+  Inventory: {fileID: 8329464103592082146}
+  InventoryViewLinker: {fileID: 3348423736232056317}
 --- !u!114 &8329464103592082146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots:
+  <slots>k__BackingField:
   - index: 0
     Inventory: {fileID: 0}
   - index: 0

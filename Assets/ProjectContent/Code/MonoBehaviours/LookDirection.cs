@@ -2,7 +2,7 @@
 
 namespace ProjectContent.Code.MonoBehaviours
 {
-  public class LookDirection : UnityEngine.MonoBehaviour
+  public class LookDirection : MonoBehaviour
   {
     public float angle = 0f;
     public Vector2 direction;

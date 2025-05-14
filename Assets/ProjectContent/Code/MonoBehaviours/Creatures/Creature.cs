@@ -1,6 +1,5 @@
 ﻿using ProjectContent.Code.Csharps.Enums;
 using ProjectContent.Code.Csharps.Item.Usages;
-using ProjectContent.Code.PrototypingFolder;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours.Creatures

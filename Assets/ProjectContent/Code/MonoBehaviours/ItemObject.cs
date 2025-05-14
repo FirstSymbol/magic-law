@@ -1,6 +1,6 @@
 ﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
@@ -10,6 +10,8 @@ namespace ProjectContent.Code.MonoBehaviours
   {
     public ItemConfig itemConfig;
     public int Count;
+    public bool IsInteracting { get; set; }
+    public GameObject InteractorObject { get; set; }
     
     
     private void Awake()
@@ -17,6 +19,8 @@ namespace ProjectContent.Code.MonoBehaviours
       GetComponent<SpriteRenderer>().sprite = itemConfig.Sprite;
       GetComponent<BoxCollider2D>().isTrigger = true;
     }
+
+
     public void Interact(GameObject sender)
     {
       

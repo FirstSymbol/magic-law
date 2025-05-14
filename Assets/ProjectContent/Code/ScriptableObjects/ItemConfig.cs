@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using UnityEngine;
-using Attribute = ProjectContent.Code.PrototypingFolder.Attribute;
+using Attribute = ProjectContent.Code.Csharps.Attributes.Attribute;
 
-namespace ProjectContent.Code.ScriptableObjects.Base
+namespace ProjectContent.Code.ScriptableObjects
 {
   [CreateAssetMenu(fileName = "ItemConfig Default", menuName = "Configs/ItemConfig", order = 0)]
   public class ItemConfig : ScriptableObject

@@ -1,7 +1,8 @@
 ﻿using System;
 using ProjectContent.Code.Csharps;
-using ProjectContent.Code.PrototypingFolder.UI;
-using ProjectContent.Code.ScriptableObjects.Base;
+using ProjectContent.Code.MonoBehaviours;
+using ProjectContent.Code.MonoBehaviours.UI;
+using ProjectContent.Code.ScriptableObjects;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TriInspector;
 using UnityEngine;
@@ -11,10 +12,12 @@ namespace ProjectContent.Code.PrototypingFolder
 {
   public class CraftStation : Entity, IInteractableEntity
   {
-    public CraftBundle CraftBundle;
+    public bool IsInteracting { get; set; }
+    public GameObject InteractorObject { get; set; } = null;
+    public CraftBundle[] CraftBundles =  new CraftBundle[1];
     private WindowsController _windowsController;
     private CraftWindow _craftWindow;
-    private Inventory _interactorInventory;
+    public Inventory _interactorInventory;
     
     [Inject]
     private void Inject(UIController uiController)
@@ -28,22 +31,27 @@ namespace ProjectContent.Code.PrototypingFolder
     }
 
     [Button("Craft Debug")]
-    public void Craft(int index)
+    public void Craft(int craftBundleIndex,int index)
     {
-      int amount = CraftBundle.Items[index].CraftCount;
+      int amount = CraftBundles[craftBundleIndex].Items[index].CraftCount;
       bool check = true;
       
       if (_interactorInventory == null) return;
       
-      foreach (CraftElement craftElement in CraftBundle.Items[index].craftCoats)
+      foreach (CraftElement craftElement in CraftBundles[craftBundleIndex].Items[index].craftCoats)
         if (_interactorInventory.GetItemCount(craftElement.Item) < craftElement.Amount * amount) 
           check = false;
       
       if (!check) return;
       
-      _interactorInventory.AddItem(CraftBundle.Items[index], amount);
-      Debug.Log($"Craft: {CraftBundle.Items[index].name}");
+      foreach (CraftElement craftElement in CraftBundles[craftBundleIndex].Items[index].craftCoats) 
+        _interactorInventory.RemoveItem(craftElement.Item, craftElement.Amount);
+      
+      _interactorInventory.AddItem(CraftBundles[craftBundleIndex].Items[index], amount);
+      
+      Debug.Log($"Craft: {CraftBundles[craftBundleIndex].Items[index].name}");
     }
+    
     public void Interact(GameObject sender)
     {
       Debug.Log("Interacting with CraftStation");
@@ -52,7 +60,20 @@ namespace ProjectContent.Code.PrototypingFolder
         _interactorInventory = player.MainInventory;
       }
       _windowsController.OpenWindow<CraftWindow>();
-      _craftWindow.view.Connect(this);
+      _craftWindow.View.Connect(this);
+      InteractorObject = sender;
+      IsInteracting = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+      if (other.CompareTag("InteractionTrigger") == false) return;
+      if (other.transform.parent.gameObject == InteractorObject)
+      {
+        _windowsController.CloseWindow(_craftWindow);
+        InteractorObject = null;
+        IsInteracting = false;
+      }
     }
   }
 }
