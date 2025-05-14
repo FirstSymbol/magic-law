@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 619885642430214647}
   - component: {fileID: 2307384067533313848}
   - component: {fileID: 4885637398020612499}
-  - component: {fileID: 2394763322662571058}
   - component: {fileID: 3359024753196020873}
+  - component: {fileID: 7265746173280935154}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: DefaultSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,23 +80,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2394763322662571058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668488731119216211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0af9fdda85408585b07b272539dd19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  SelectedImage: {fileID: 8044206866233246003}
-  ItemImage: {fileID: 5006380577570179770}
-  CountText: {fileID: 3542260797623388771}
-  inventoryView: {fileID: 0}
 --- !u!114 &3359024753196020873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +93,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _containerSource: 0
+--- !u!114 &7265746173280935154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668488731119216211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add1ae69623643bca22f2ec2bb027e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedImage: {fileID: 8044206866233246003}
+  ItemImage: {fileID: 5006380577570179770}
+  CountText: {fileID: 3542260797623388771}
+  Index: 0
+  IsSelected: 0
 --- !u!1 &3788650428466673034
 GameObject:
   m_ObjectHideFlags: 0

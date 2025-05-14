@@ -7,7 +7,7 @@ using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.UI
 {
-  public abstract class SlotView : MonoBehaviour, IPointerClickHandler
+  public class SlotView : MonoBehaviour, IPointerClickHandler
   {
     public Image SelectedImage;
     public Image ItemImage;
@@ -65,6 +65,6 @@ namespace ProjectContent.Code.MonoBehaviours.UI
         SelectedImage.gameObject.SetActive(false);
       }
     }
-    public abstract void OnPointerClick(PointerEventData eventData);
+    public virtual void OnPointerClick(PointerEventData eventData){}
   }
 }

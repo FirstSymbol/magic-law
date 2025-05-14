@@ -17,7 +17,7 @@ namespace ProjectContent.Code.PrototypingFolder
     public CraftBundle[] CraftBundles =  new CraftBundle[1];
     private WindowsController _windowsController;
     private CraftWindow _craftWindow;
-    private Inventory _interactorInventory;
+    public Inventory _interactorInventory;
     
     [Inject]
     private void Inject(UIController uiController)
@@ -44,7 +44,11 @@ namespace ProjectContent.Code.PrototypingFolder
       
       if (!check) return;
       
+      foreach (CraftElement craftElement in CraftBundles[craftBundleIndex].Items[index].craftCoats) 
+        _interactorInventory.RemoveItem(craftElement.Item, craftElement.Amount);
+      
       _interactorInventory.AddItem(CraftBundles[craftBundleIndex].Items[index], amount);
+      
       Debug.Log($"Craft: {CraftBundles[craftBundleIndex].Items[index].name}");
     }
     

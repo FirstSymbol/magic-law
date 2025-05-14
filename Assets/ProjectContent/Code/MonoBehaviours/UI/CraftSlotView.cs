@@ -31,7 +31,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
         Hide();
       }
       else
-      {
+      { 
         if (_isHide) 
           Show();
         ItemImage.sprite = item.Icon;
@@ -42,18 +42,25 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     public override void Show()
     {
       _isHide = true;
-      gameObject.SetActive(true);
+      ItemImage.gameObject.SetActive(true);
+      CountText.gameObject.SetActive(true);
     }
 
     public override void Hide()
     {
       _isHide = false;
-      gameObject.SetActive(false);
+      ItemImage.gameObject.SetActive(false);
+      CountText.gameObject.SetActive(false);
     }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-      CraftStationView.SelectedItem = new int2(CraftBundleIndex, Index);
+      if (CraftStationView != null)
+      {
+        CraftStationView.SelectedItem = new int2(CraftBundleIndex, Index);
+        CraftStationView.ItemCoastView.Connect(CraftStationView.CraftStation.CraftBundles[CraftBundleIndex].Items[Index]);
+        CraftStationView.DefaultSlotView.UpdateSlot(CraftStationView.CraftStation.CraftBundles[CraftBundleIndex].Items[Index]);
+      }
     }
   }
 }

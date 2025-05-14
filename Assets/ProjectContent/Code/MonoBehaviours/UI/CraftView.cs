@@ -13,22 +13,26 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     private List<CraftSlotView> slots = new List<CraftSlotView>();
     public int2 SelectedItem = new int2(-1, -1);
     public Button craftButton;
+    public ItemCoastView ItemCoastView;
+    public DefaultSlotView DefaultSlotView;
 
     private void Awake()
     {
       craftButton.onClick.AddListener(OnClickCraftButton);
+      DefaultSlotView.Hide();
     }
 
     private void OnClickCraftButton()
     {
       if (CraftStation == null) return;
-      
+      Debug.Log("Clicked Craft Station");
       CraftStation.Craft(SelectedItem.x, SelectedItem.y);
     }
 
     public void Connect(CraftStation craftStation)
     {
       Disconnect();
+      DefaultSlotView.Hide();
       CraftStation = craftStation;
 
       for (int i = 0; i < craftStation.CraftBundles.Length; i++)
