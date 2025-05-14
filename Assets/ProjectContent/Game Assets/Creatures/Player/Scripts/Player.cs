@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.MonoBehaviours.Creatures;
+using ProjectContent.Code.MonoBehaviours.UI;
 using ProjectContent.Code.PrototypingFolder;
+using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -12,8 +14,8 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
 {
   public class Player : Creature, ICanInteract, IKeepItems
   {
-    public InputActionReference ItemUseAction;
-    public InputActionReference ItemAlternateUseAction;
+    [field: SerializeField] public CraftStation PlayerCraftingStation { get; private set; }
+    
     [field: SerializeField] public Inventory FastInventory { get; private set; }
     [field: SerializeField] public Inventory MainInventory { get; private set; }
     private GameInput _gameInput;
@@ -26,11 +28,14 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
     
     [field: SerializeField] public InventoryViewLinker InventoryFastViewLinker { get; private set; }
     [field: SerializeField] public InventoryViewLinker InventoryFastMainLinker { get; private set; }
+    private CraftWindow _craftWindow;
+    private UIController _uiController;
 
     [Inject]
-    private void Inject(GameInput gameInput)
+    private void Inject(GameInput gameInput, UIController uiController)
     {
       _gameInput = gameInput;
+      _uiController = uiController;
     }
 
     public void Interact(GameObject target = null)
@@ -42,6 +47,15 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
     {
       _gameInput.Player.LBM.started += UseItem;
       _gameInput.Player.RBM.started += AlternateUseItem;
+      _gameInput.UI.OpenCraft.performed += OpenCraft;
+    }
+
+    private void OpenCraft(InputAction.CallbackContext obj)
+    {
+      if (PlayerCraftingStation)
+      {
+        
+      }
     }
 
     private void Start()

@@ -1,8 +1,7 @@
-﻿using ProjectContent.Code.PrototypingFolder.Good;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-namespace ProjectContent.Code.PrototypingFolder.UI
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public abstract class UIWindow : MonoBehaviour
   {
@@ -16,13 +15,13 @@ namespace ProjectContent.Code.PrototypingFolder.UI
 
     public abstract void Initialize();
     public bool IsOpened => gameObject.activeSelf;
-    public void Open()
+    public virtual void Open()
     {
       gameObject.SetActive(true);
       
     }
 
-    public void Close()
+    public virtual void Close()
     {
       gameObject.SetActive(false);
     }

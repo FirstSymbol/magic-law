@@ -1,23 +1,26 @@
-﻿using System;
+﻿using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace ProjectContent.Code.PrototypingFolder.UI
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class CraftWindow : UIWindow
   {
     private GameInput _gameInput;
-    public CraftView view;
+    public CraftView View;
+    private Player _player;
     
     [Inject]
-    private void Inject(GameInput gameInput)
+    private void Inject(GameInput gameInput, Player player)
     {
       _gameInput = gameInput;
+      _player = player;
     }
     public override void Initialize()
     {
       _gameInput.UI.OpenCraft.performed += ToggleOpen;
       gameObject.SetActive(false);
+      View.Connect(_player.PlayerCraftingStation);
     }
 
     private void ToggleOpen(InputAction.CallbackContext obj)
@@ -35,6 +38,12 @@ namespace ProjectContent.Code.PrototypingFolder.UI
       {
         _windowsController.OpenWindow<CraftWindow>();
       } 
+    }
+
+    public override void Close()
+    {
+      base.Close();
+      View.Connect(_player.PlayerCraftingStation);
     }
 
     private void OnDestroy()

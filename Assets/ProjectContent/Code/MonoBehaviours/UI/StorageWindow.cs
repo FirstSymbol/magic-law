@@ -1,4 +1,4 @@
-﻿namespace ProjectContent.Code.PrototypingFolder.UI
+﻿namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class StorageWindow : UIWindow
   {

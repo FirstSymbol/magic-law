@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 using Zenject;
 
-namespace ProjectContent.Code.PrototypingFolder.UI
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class InventoryWindow : UIWindow
   {

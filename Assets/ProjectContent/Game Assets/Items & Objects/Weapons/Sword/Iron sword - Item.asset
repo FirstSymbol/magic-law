@@ -14,34 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sword
   damage: 10
+  CraftCount: 1
   ItemType: 2
   Sprite: {fileID: 21300000, guid: b957c5eca68225c4f9709ab82f9e9864, type: 3}
   Icon: {fileID: 21300000, guid: b957c5eca68225c4f9709ab82f9e9864, type: 3}
   MaxCount: 32
   AnimatorController: {fileID: 9100000, guid: a31a35e4194d0424ebd4ee45c977412c, type: 2}
+  craftCoats: []
   usageActions:
   - rid: 5298632868079861972
   alternateUsageActions: []
   attributes:
-  - rid: 5298632892089368667
+  - rid: 235410102765224024
   references:
     version: 2
     RefIds:
+    - rid: 235410102765224024
+      type: {class: DamageAttribute, ns: ProjectContent.Code.Csharps.Attributes, asm: Assembly-CSharp}
+      data:
+        Value: 0
+        ActiveTypes: 
+        <InteractionTypes>k__BackingField:
+          list: []
     - rid: 5298632868079861972
       type: {class: PlayUseAnimation, ns: ProjectContent.Code.Csharps.Item.Usages, asm: Assembly-CSharp}
       data: 
-    - rid: 5298632892089368667
-      type: {class: ArmorAttribute, ns: ProjectContent.Code.PrototypingFolder, asm: Assembly-CSharp}
-      data:
-        Value: 5
-        ActiveTypes: 02000000
-        <InteractionType>k__BackingField:
-          typeName: ProjectContent.Code.Csharps.Stats.Armor, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        <Multiplier>k__BackingField: 1
-        <InteractionTypes>k__BackingField:
-          list:
-          - Key:
-              typeName: ProjectContent.Code.Csharps.Stats.Armor, Assembly-CSharp,
-                Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-            Value: 1

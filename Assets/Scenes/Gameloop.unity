@@ -767,8 +767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c816f4570244aa2a111e712f6d82f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaText: {fileID: 294595501}
-  creature: {fileID: 1191230496}
+  StaminaText: {fileID: 294595501}
+  Creature: {fileID: 1191230496}
 --- !u!1 &299056941
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1264760994}
   m_HandleRect: {fileID: 1264760993}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1108,15 +1108,15 @@ MonoBehaviour:
   Windows:
     list:
     - Key:
-        typeName: ProjectContent.Code.PrototypingFolder.UI.InventoryWindow, Assembly-CSharp,
+        typeName: ProjectContent.Code.MonoBehaviours.UI.InventoryWindow, Assembly-CSharp,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       Value: {fileID: 901211825}
     - Key:
-        typeName: ProjectContent.Code.PrototypingFolder.UI.StorageWindow, Assembly-CSharp,
+        typeName: ProjectContent.Code.MonoBehaviours.UI.StorageWindow, Assembly-CSharp,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       Value: {fileID: 2027036392}
     - Key:
-        typeName: ProjectContent.Code.PrototypingFolder.UI.CraftWindow, Assembly-CSharp,
+        typeName: ProjectContent.Code.MonoBehaviours.UI.CraftWindow, Assembly-CSharp,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       Value: {fileID: 359864079}
 --- !u!114 &348314218
@@ -1313,6 +1313,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2106817584}
+  - {fileID: 1260527337}
+  - {fileID: 829111419}
   m_Father: {fileID: 348314216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1370,7 +1372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df0ef91f6344b3cb113ffd0ae4f8c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 1146917855}
+  View: {fileID: 1146917855}
 --- !u!4 &392432826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1896523560734485976, guid: 694573a10b304504ab16b034ba6be547, type: 3}
@@ -2236,19 +2238,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829111418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 438670416}
   - {fileID: 301555970}
-  m_Father: {fileID: 2106817584}
+  m_Father: {fileID: 359864076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.591999, y: -324.904}
-  m_SizeDelta: {x: 292.58, y: 185.67}
+  m_AnchoredPosition: {x: 0.59194946, y: -100.90436}
+  m_SizeDelta: {x: -56.421936, y: -290.33002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829111420
 MonoBehaviour:
@@ -2649,7 +2651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f0c4dbb1ca4d919d0956cd718966bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CraftBundle: {fileID: 11400000, guid: 02a8d990621c4044e86dd2c82c356deb, type: 2}
+  CraftBundles:
+  - {fileID: 11400000, guid: 02a8d990621c4044e86dd2c82c356deb, type: 2}
 --- !u!212 &920302649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3090,6 +3093,7 @@ MonoBehaviour:
   movementController: {fileID: 800833493}
   windowsController: {fileID: 348314217}
   uiController: {fileID: 348314219}
+  Player: {fileID: 1191230496}
 --- !u!1 &1026531611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,7 +3712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
   m_SizeDelta: {x: 0.95996094, y: -0.33000183}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1146917854
@@ -3748,7 +3752,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlotPrefab: {fileID: 63372348006059135, guid: e3b2e60c71f3a2f4bb8e3df5a7686c47, type: 3}
-  SelectedItem: -1
+  SelectedItem:
+    x: -1
+    y: -1
   craftButton: {fileID: 1260527338}
 --- !u!1001 &1157125423
 PrefabInstance:
@@ -4399,17 +4405,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260527336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1807786560}
-  m_Father: {fileID: 2106817584}
+  m_Father: {fileID: 359864076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -146, y: -81}
+  m_AnchoredPosition: {x: -149.99997, y: 142.99962}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260527338
@@ -5076,8 +5082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b0e399556a4e288526bf03c1efe7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1524257289}
-  creature: {fileID: 1191230496}
+  HealthText: {fileID: 1524257289}
+  Creature: {fileID: 1191230496}
 --- !u!4 &1545786077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1896523560734485976, guid: fc91ed80314573143a795291f061ef64, type: 3}
@@ -49943,9 +49949,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1260527337}
-  - {fileID: 829111419}
+  m_Children: []
   m_Father: {fileID: 359864076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}

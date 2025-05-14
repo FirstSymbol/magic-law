@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using ProjectContent.Code.PrototypingFolder.UI;
 using ProjectContent.Code.ToolsAndExtentionsScripts.DictionarySerializer;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder.Good
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class WindowsController : MonoBehaviour
   {

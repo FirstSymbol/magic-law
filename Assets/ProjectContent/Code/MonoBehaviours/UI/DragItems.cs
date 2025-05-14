@@ -2,7 +2,7 @@
 using ProjectContent.Code.Csharps;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder.UI
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class DragItems : MonoBehaviour
   {

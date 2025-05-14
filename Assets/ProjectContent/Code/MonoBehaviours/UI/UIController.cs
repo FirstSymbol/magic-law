@@ -1,7 +1,6 @@
-﻿using ProjectContent.Code.PrototypingFolder.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder.Good
+namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class UIController : MonoBehaviour
   {
