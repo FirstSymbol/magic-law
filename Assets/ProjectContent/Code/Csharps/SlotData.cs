@@ -1,5 +1,6 @@
 ﻿using System;
 using ProjectContent.Code.ScriptableObjects;
+using Unity.VisualScripting;
 
 namespace ProjectContent.Code.Csharps
 {
@@ -22,10 +23,21 @@ namespace ProjectContent.Code.Csharps
 
     public void SubValue(int value)
     {
+      if (Item == null) return;
       Count -= value;
       if (Count <= 0)
       {
         Item = null;
+      }
+      SlotDataChanged?.Invoke(Slot.index);
+    }
+    public void AddValue(int value)
+    {
+      if (Item == null) return;
+      Count += value;
+      if (Count >= Item.MaxCount)
+      {
+        return;
       }
       SlotDataChanged?.Invoke(Slot.index);
     }

@@ -57,7 +57,7 @@ namespace ProjectContent.Code.PrototypingFolder
       Debug.Log("Interacting with CraftStation");
       if (sender.TryGetComponent(out Player player))
       {
-        _interactorInventory = player.MainInventory;
+        _interactorInventory = player.FastInventory;
       }
       _windowsController.OpenWindow<CraftWindow>();
       _craftWindow.View.Connect(this);

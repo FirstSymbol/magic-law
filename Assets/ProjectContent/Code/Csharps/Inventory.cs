@@ -9,6 +9,7 @@ namespace ProjectContent.Code.Csharps
   public class Inventory : MonoBehaviour, IStoreItem
   {
     [field: SerializeField] public Slot[] slots { get; private set; } = new Slot[6];
+    public Inventory SubInventory;
     public Action<int> OnSlotUpdated;
     public Action<int> OnSlotSetted;
     public Action<int> OnSlotFill;
@@ -36,18 +37,42 @@ namespace ProjectContent.Code.Csharps
     {
       for (int i = 0; i < slots.Length && count > 0; i++) 
         count -= AddItemByIndex(i, item, count);
-      
-      if (count != 0) Debug.LogWarning($"There is no free space in the inventory - remains items count: {count}");
+
+      if (count != 0)
+      {
+        if (SubInventory != null)
+          SubInventory.AddItem(item, count);
+        else
+          item.Drop(transform.position, count);
+      }
     }
 
-    public void DropItemByIndex(int index)
+    public void DropItemByIndex(int index, int count)
     {
+      SlotData slotData = slots[index].SlotData;
+      if (slotData.Item == null) return;
       
+      slotData.Item.Drop(transform.position, count);
+
+      slotData.SubValue(count);
     }
 
     public void RemoveItem(ItemConfig item, int count)
     {
-      
+      foreach (Slot slot in slots)
+      {
+        if (slot.SlotData.Item == item)
+        {
+          int tempCount = slot.SlotData.Count;
+          slot.SlotData.SubValue(count);
+          count -= tempCount;
+        }
+      }
+
+      if (count > 0)
+      {
+        SubInventory.RemoveItem(item, count);
+      }
     }
 
     public int GetItemCount(ItemConfig item)
@@ -60,7 +85,11 @@ namespace ProjectContent.Code.Csharps
           count += slot.SlotData.Count;
         }
       }
-      
+
+      if (SubInventory != null)
+      {
+        count += SubInventory.GetItemCount(item);
+      }
       return count;
     }
 

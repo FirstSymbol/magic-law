@@ -1,6 +1,7 @@
 ﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Code.ScriptableObjects;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
@@ -12,14 +13,21 @@ namespace ProjectContent.Code.MonoBehaviours
     public int Count;
     public bool IsInteracting { get; set; }
     public GameObject InteractorObject { get; set; }
-    
+    public SpriteRenderer SpriteRenderer { get; set; }
+
     
     private void Awake()
     {
-      GetComponent<SpriteRenderer>().sprite = itemConfig.Sprite;
+      SpriteRenderer = GetComponent<SpriteRenderer>();
       GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
+    public void Initialize(ItemConfig itemConfig, int count)
+    {
+      this.itemConfig = itemConfig;
+      SpriteRenderer.sprite = itemConfig.Sprite;
+      Count = count;
+    }
 
     public void Interact(GameObject sender)
     {

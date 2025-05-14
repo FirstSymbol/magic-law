@@ -302,6 +302,7 @@ MonoBehaviour:
     Inventory: {fileID: 0}
   - index: 0
     Inventory: {fileID: 0}
+  SubInventory: {fileID: 4356844406667493892}
 --- !u!114 &578875517843149165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +421,7 @@ MonoBehaviour:
     Inventory: {fileID: 0}
   - index: 0
     Inventory: {fileID: 0}
+  SubInventory: {fileID: 0}
 --- !u!1 &6587848913188363278
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftBundles:
   - {fileID: 11400000, guid: ddd20b4e7986ed04c887544b375969d7, type: 2}
-  _interactorInventory: {fileID: 4356844406667493892}
+  _interactorInventory: {fileID: 7736451759192257113}
 --- !u!1 &8811365944854709155
 GameObject:
   m_ObjectHideFlags: 0

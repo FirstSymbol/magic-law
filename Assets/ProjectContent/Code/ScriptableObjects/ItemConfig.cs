@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
+using ProjectContent.Code.MonoBehaviours;
 using UnityEngine;
 using Attribute = ProjectContent.Code.Csharps.Attributes.Attribute;
 
@@ -17,13 +18,17 @@ namespace ProjectContent.Code.ScriptableObjects
     public int MaxCount = 32;
     public RuntimeAnimatorController AnimatorController;
     public List<CraftElement> craftCoats = new List<CraftElement>();
+    public GameObject Prefab;
     
     [SerializeReference] public List<UsageAction> usageActions = new List<UsageAction>();
     [SerializeReference] public List<UsageAction> alternateUsageActions = new List<UsageAction>();
     [SerializeReference] public List<Attribute> attributes = new List<Attribute>();
-    
-  }
 
-  // Usage target & usage self
-  // 
+    public void Drop(Vector3 position, int amount)
+    {
+      GameObject item = Instantiate(Prefab, position, Quaternion.identity);
+      ItemObject itemObject = item.GetComponent<ItemObject>();
+      itemObject.Initialize(this, amount);
+    }
+  }
 }
