@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce9d6cb5f98340f08313565b9a822bba, type: 3}
-  m_Name: CraftBundle Test
+  m_Name: Iron anvil - Bundle
   m_EditorClassIdentifier: 
   Items:
   - {fileID: 11400000, guid: 6d13e15d6bc90264db2893f60393a94c, type: 2}
-  - {fileID: 11400000, guid: a8feb30de50481d45a6e0446ff78fb05, type: 2}
+  - {fileID: 11400000, guid: 9894a409022ac5b48911585c366a37e5, type: 2}
+  - {fileID: 11400000, guid: e078d0f116b4f7e4dbf7153cca7cbf34, type: 2}
+  - {fileID: 11400000, guid: 9345bd9fdbb93964494613d06b5f1bec, type: 2}
+  - {fileID: 11400000, guid: dab62f34bf43fd0478b6a8134a8181ab, type: 2}

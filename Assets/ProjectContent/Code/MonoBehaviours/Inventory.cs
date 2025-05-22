@@ -1,10 +1,12 @@
 ﻿using System;
-using ProjectContent.Code.MonoBehaviours.Creatures;
+using System.Collections.Generic;
+using ProjectContent.Code.Csharps;
+using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Code.ScriptableObjects;
 using TriInspector;
 using UnityEngine;
 
-namespace ProjectContent.Code.Csharps
+namespace ProjectContent.Code.MonoBehaviours
 {
   public class Inventory : MonoBehaviour, IStoreItem
   {
@@ -14,6 +16,16 @@ namespace ProjectContent.Code.Csharps
     public Action<int> OnSlotSetted;
     public Action<int> OnSlotFill;
 
+    private Dictionary<InvFilterType, List<InvFilterParam>> _addFilter = new()
+    {
+      { InvFilterType.Exclude , new () { InvFilterParam.MaxCount }},
+    };
+
+    private Dictionary<InvFilterType, List<InvFilterParam>> _removeFiler = new()
+    {
+      {InvFilterType.Exclude, new () { InvFilterParam.Empty }}
+    };
+    
     private void Awake()
     {
       for (int i = 0; i < slots.Length; i++)
@@ -35,10 +47,18 @@ namespace ProjectContent.Code.Csharps
     [Button("Debug AddItem")]
     public void AddItem(ItemConfig item, int count)
     {
-      for (int i = 0; i < slots.Length && count > 0; i++) 
-        count -= AddItemByIndex(i, item, count);
+      
+      InventoryFilter inventoryFilter = new InventoryFilter(this, item, _addFilter);
 
-      if (count != 0)
+      List<int> t = inventoryFilter.Filter();
+      
+      foreach (int i in t)
+      {
+        count -= AddItemByIndex(i, item, count);
+        if (count <= 0) return;
+      }
+
+      if (count > 0)
       {
         if (SubInventory != null)
           SubInventory.AddItem(item, count);
@@ -59,20 +79,15 @@ namespace ProjectContent.Code.Csharps
 
     public void RemoveItem(ItemConfig item, int count)
     {
-      foreach (Slot slot in slots)
+      InventoryFilter inventoryFilter = new(this, item, _removeFiler);
+      foreach (int i in inventoryFilter.Filter())
       {
-        if (slot.SlotData.Item == item)
-        {
-          int tempCount = slot.SlotData.Count;
-          slot.SlotData.SubValue(count);
-          count -= tempCount;
-        }
+        count -= RemoveItemByIndex(i,item, count);
+        if (count <= 0) return;
       }
-
-      if (count > 0)
-      {
+      
+      if (count > 0 && SubInventory != null) 
         SubInventory.RemoveItem(item, count);
-      }
     }
 
     public int GetItemCount(ItemConfig item)
@@ -99,15 +114,20 @@ namespace ProjectContent.Code.Csharps
     /// <param name="index">index of slot</param>
     /// <param name="item">config of item you want to add</param>
     /// <param name="count"></param>
-    /// <returns>Remains item count</returns>
+    /// <returns>Added item count</returns>
     private int AddItemByIndex(int index, ItemConfig item,int count)
     {
       int usedCount = 0;
+      
+      if (count > item.MaxCount)
+        usedCount = item.MaxCount;
+      else
+        usedCount = count;
+      
       if (slots[index].SlotData.Item == null)
       {
         slots[index].SlotData.Item = item;
-        slots[index].SlotData.Count = count;
-        usedCount = count;
+        slots[index].SlotData.Count = usedCount;
         OnSlotFill?.Invoke(index);
         OnSlotUpdated?.Invoke(index);
       }
@@ -130,9 +150,19 @@ namespace ProjectContent.Code.Csharps
       return usedCount;
     }
     
-    private void RemoveItemByIndex(int index, ItemConfig item, int count)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="item"></param>
+    /// <param name="count"></param>
+    /// <returns>Removed amount of item</returns>
+    private int RemoveItemByIndex(int index, ItemConfig item, int count)
     {
-      
+      int removedCount = slots[index].SlotData.Count;
+      slots[index].SlotData.SubValue(removedCount);
+      OnSlotUpdated?.Invoke(index);
+      return removedCount;
     }
   }
 

@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron helmet
   damage: 0
+  CraftCount: 1
   ItemType: 0
   Sprite: {fileID: 21300000, guid: 379071ce2d406704cb6858fb3057826a, type: 3}
   Icon: {fileID: 21300000, guid: 379071ce2d406704cb6858fb3057826a, type: 3}
   MaxCount: 1
   AnimatorController: {fileID: 0}
-  craftCoats: []
+  craftCoats:
+  - Item: {fileID: 11400000, guid: fa9cb146cf6f78b40a052773dc5d7196, type: 2}
+    Amount: 3
+  Prefab: {fileID: 0}
   usageActions: []
   alternateUsageActions: []
   attributes:
@@ -27,6 +31,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 235409974918643806
       type: {class: ArmorAttribute, ns: ProjectContent.Code.PrototypingFolder, asm: Assembly-CSharp}
       data:

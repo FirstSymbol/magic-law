@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceData:
-    Count: 12
+    Count: 100
     Item: {fileID: 11400000, guid: fa9cb146cf6f78b40a052773dc5d7196, type: 2}
   ExtractionCount: 1
 --- !u!4 &289381591 stripped
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1264760993}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999535
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2952,6 +2952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftBundles:
   - {fileID: 11400000, guid: 02a8d990621c4044e86dd2c82c356deb, type: 2}
+  _interactorInventory: {fileID: 0}
 --- !u!212 &920302649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4011,7 +4012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00022888184}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 0.95996094, y: -0.33000183}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1146917854
@@ -5202,7 +5203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceData:
-    Count: 12
+    Count: 100
     Item: {fileID: 11400000, guid: ff78c8107a1aa1b4897fbf893a023be5, type: 2}
   ExtractionCount: 1
 --- !u!1001 &1374829592
@@ -5557,7 +5558,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 476374962}
   m_HandleRect: {fileID: 476374961}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -50546,8 +50547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceData:
-    Count: 12
-    Item: {fileID: 11400000, guid: c4807e9fe1077f241867facbb4bd4d05, type: 2}
+    Count: 100
+    Item: {fileID: 11400000, guid: 08ce80672856aba42bdd4eef77c65991, type: 2}
   ExtractionCount: 1
 --- !u!1 &2106817583
 GameObject:

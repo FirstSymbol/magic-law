@@ -1,7 +1,6 @@
 ﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Code.ScriptableObjects;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
