@@ -1,7 +1,9 @@
 ﻿using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
+using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.UI
 {
@@ -10,6 +12,12 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     public TextMeshProUGUI StaminaText;
     public Creature Creature;
 
+    [Inject]
+    private void Inject(Player player)
+    {
+      Creature = player;
+    }
+    
     private void Awake()
     {
       Creature.creatureStats.Stamina.OnValueChanged += ChangeText;

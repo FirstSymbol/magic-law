@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7736451759192257113}
   - component: {fileID: 578875517843149165}
   - component: {fileID: 5537837484647614080}
+  - component: {fileID: 5272596955285104377}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -155,7 +156,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1882347247711912902, guid: 3c4ce5c0d0166e44f8e8c34a47c8085c, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: ad7f27314d15d744dbdcda14e14bfcd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -257,13 +258,13 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 0
       Active: 1
   <PlayerCraftingStation>k__BackingField: {fileID: 5483910644400289673}
-  <FastInventory>k__BackingField: {fileID: 0}
-  <MainInventory>k__BackingField: {fileID: 0}
+  <FastInventory>k__BackingField: {fileID: 7736451759192257113}
+  <MainInventory>k__BackingField: {fileID: 4356844406667493892}
   <Interaction>k__BackingField: {fileID: 6688534916679040389}
   <SlotSelector>k__BackingField: {fileID: 578875517843149165}
   <EquipItem>k__BackingField: {fileID: 536540131844956222}
-  <InventoryFastViewLinker>k__BackingField: {fileID: 0}
-  <InventoryFastMainLinker>k__BackingField: {fileID: 0}
+  <InventoryFastViewLinker>k__BackingField: {fileID: 5272596955285104377}
+  <InventoryMainViewLinker>k__BackingField: {fileID: 8728897178286081221}
 --- !u!114 &6688534916679040389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +320,7 @@ MonoBehaviour:
   SelectedSlotIndex: 0
   inventoryRange:
     x: 0
-    y: 9
+    y: 5
   creature: {fileID: 4475166580265409408}
   SlotText: {fileID: 0}
 --- !u!114 &5537837484647614080
@@ -336,6 +337,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8082285963685450021}
   Creature: {fileID: 4475166580265409408}
+--- !u!114 &5272596955285104377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957826209934328523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
+  inventory: {fileID: 7736451759192257113}
 --- !u!1 &3553162968745342141
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5379150396208957416}
   - component: {fileID: 4356844406667493892}
+  - component: {fileID: 8728897178286081221}
   m_Layer: 0
   m_Name: Main Inventory
   m_TagString: Untagged
@@ -422,6 +438,20 @@ MonoBehaviour:
   - index: 0
     Inventory: {fileID: 0}
   SubInventory: {fileID: 0}
+--- !u!114 &8728897178286081221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3553162968745342141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
+  inventory: {fileID: 4356844406667493892}
 --- !u!1 &6587848913188363278
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +850,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b957c5eca68225c4f9709ab82f9e9864, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -828,7 +858,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1213637006175054745

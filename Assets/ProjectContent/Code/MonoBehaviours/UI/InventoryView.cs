@@ -7,7 +7,6 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   public class InventoryView : MonoBehaviour
   {
     public Inventory Inventory { get; private set; }
-    public SlotSelector selector;
     public GameObject SlotPrefab;
     private List<ItemSlotView> slots = new List<ItemSlotView>();
     public void Connect(Inventory inventory)

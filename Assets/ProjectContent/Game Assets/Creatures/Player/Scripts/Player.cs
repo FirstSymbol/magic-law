@@ -5,6 +5,7 @@ using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using ProjectContent.Code.MonoBehaviours.UI;
 using ProjectContent.Code.PrototypingFolder;
+using ProjectContent.Code.PrototypingFolder.UI;
 using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,7 +28,7 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
     [field: SerializeField] public EquipItem EquipItem { get; private set; }
     
     [field: SerializeField] public InventoryViewLinker InventoryFastViewLinker { get; private set; }
-    [field: SerializeField] public InventoryViewLinker InventoryFastMainLinker { get; private set; }
+    [field: SerializeField] public InventoryViewLinker InventoryMainViewLinker { get; private set; }
     private CraftWindow _craftWindow;
     private UIController _uiController;
 
@@ -60,16 +61,15 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
 
     private void Start()
     {
-      InventoryFastViewLinker.Link();
-      InventoryFastMainLinker.Link();
+      _uiController.WindowsController.GetWindow<FastPanelWindow>().InventoryView.Connect(FastInventory);
+      _uiController.WindowsController.GetWindow<InventoryWindow>().InventoryView.Connect(MainInventory);
+      
     }
 
     private void OnDisable()
     {
       _gameInput.Player.LBM.started -= UseItem;
       _gameInput.Player.RBM.started -= AlternateUseItem;
-      InventoryFastViewLinker.Unlink();
-      InventoryFastMainLinker.Unlink();
     }
 
 

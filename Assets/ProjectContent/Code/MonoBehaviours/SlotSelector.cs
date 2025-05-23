@@ -87,7 +87,8 @@ namespace ProjectContent.Code.MonoBehaviours
     private void UpdateView()
     {
       var t = GetSelectedSlot();
-      SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
+      if (SlotText is not null)
+        SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
     }
   }
 }

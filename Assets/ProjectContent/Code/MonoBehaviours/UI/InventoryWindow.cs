@@ -5,7 +5,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class InventoryWindow : UIWindow
   {
-    public CraftView CraftView;
+    public InventoryView InventoryView;
     
     
     private GameInput _gameInput;
