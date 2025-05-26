@@ -1,13 +1,16 @@
 ﻿using ProjectContent.Code.Csharps.Architecture;
+using ProjectContent.Code.MonoBehaviours.UI;
 using UnityEngine;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
-  public class InitialBootstrapper : UnityEngine.MonoBehaviour
+  public class InitialBootstrapper : MonoBehaviour
   {
     private ProjectContext _context;
     private DiContainer _container;
+    [Inject] private LoadingScreen _loadingScreen;
+    
 
     public GameObject coroutineRunnerPrefab;
 
@@ -22,13 +25,13 @@ namespace ProjectContent.Code.MonoBehaviours.Architecture
     {
       _context = ProjectContext.Instance;
       _container = _context.Container;
-
+      
       _coroutineRunner = Instantiate(coroutineRunnerPrefab,_context.transform).GetComponent<CoroutineRunner>();
       _container.Bind<CoroutineRunner>().FromInstance(_coroutineRunner).AsSingle().NonLazy();
       
       _gameInput.Enable();
       
-      Game game = new Game(_coroutineRunner);
+      Game game = new Game(_coroutineRunner, _loadingScreen);
       _container.Bind<Game>().FromInstance(game).AsSingle().NonLazy();
       
     }

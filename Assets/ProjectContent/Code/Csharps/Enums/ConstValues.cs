@@ -4,10 +4,15 @@ namespace ProjectContent.Code.Csharps.Enums
 {
   public static class ConstValues
   { 
-    public static class Architecture
+    public static class Scenes
     {
+      public const string MainMenu = "MainMenu";
       public const string InitialScene = "InitialScene";
       public const string GameloopScene = "Gameloop";
+    }
+    public static class Architecture
+    {
+      
     }
     public static class Animation
     {

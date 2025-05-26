@@ -14,7 +14,7 @@ namespace ProjectContent.Code.Csharps.Architecture.States
     {
       Debug.Log("[InitialState] Enter");
       
-      StateMachine.Enter<LoadSceneState, string>(ConstValues.Architecture.GameloopScene);
+      StateMachine.Enter<LoadSceneState, string>(ConstValues.Scenes.MainMenu);
     }
 
     public override void Exit()

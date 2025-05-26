@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using ProjectContent.Code.Csharps.Architecture.StateMachine;
 using ProjectContent.Code.MonoBehaviours.Architecture;
+using ProjectContent.Code.MonoBehaviours.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -10,7 +11,8 @@ namespace ProjectContent.Code.Csharps.Architecture.States
 {
   public class LoadSceneState : PayloadState<string>
   {
-    CoroutineRunner _coroutineRunner;
+    private CoroutineRunner _coroutineRunner;
+    private LoadingScreen _loadingScreen;
 
     [Inject]
     private void Inject()
@@ -18,9 +20,10 @@ namespace ProjectContent.Code.Csharps.Architecture.States
       Debug.Log("Inject");
     }
     
-    public LoadSceneState(StateMachineBase stateMachine,CoroutineRunner coroutineRunner) : base(stateMachine)
+    public LoadSceneState(StateMachineBase stateMachine,CoroutineRunner coroutineRunner, LoadingScreen loadingScreen) : base(stateMachine)
     {
       _coroutineRunner = coroutineRunner;
+      _loadingScreen = loadingScreen;
     }
 
     public override void Enter(string sceneName)
@@ -42,11 +45,14 @@ namespace ProjectContent.Code.Csharps.Architecture.States
         Debug.LogError($"Failed to load scene: {sceneName}");
         yield break;
       }
-      
+      _loadingScreen.Show();
+      yield return new WaitForSeconds(2f);
+      LoadingScreen loadingScreen;
       sceneAsync.completed += (AsyncOperation _) =>
       {
         Debug.Log($"Scene {sceneName} successfully loaded!");
         StateMachine.Enter<GameloopState>();
+        _loadingScreen.Hide();
       };
       
       while (!sceneAsync.isDone)

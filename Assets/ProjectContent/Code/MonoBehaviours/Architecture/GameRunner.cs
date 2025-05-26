@@ -7,8 +7,8 @@ namespace ProjectContent.Code.MonoBehaviours.Architecture
   {
     private void Awake()
     {
-      if (SceneManager.GetActiveScene().name != ConstValues.Architecture.InitialScene) 
-        SceneManager.LoadScene(ConstValues.Architecture.InitialScene);
+      if (SceneManager.GetActiveScene().name != ConstValues.Scenes.InitialScene) 
+        SceneManager.LoadScene(ConstValues.Scenes.InitialScene);
     }
   }
 }
