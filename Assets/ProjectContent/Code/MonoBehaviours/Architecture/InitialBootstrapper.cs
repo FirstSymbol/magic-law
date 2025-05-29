@@ -8,7 +8,6 @@ namespace ProjectContent.Code.MonoBehaviours.Architecture
   public class InitialBootstrapper : MonoBehaviour
   {
     private ProjectContext _context;
-    private DiContainer _container;
     [Inject] private LoadingScreen _loadingScreen;
     
 
@@ -17,23 +16,16 @@ namespace ProjectContent.Code.MonoBehaviours.Architecture
     private CoroutineRunner _coroutineRunner;
     private GameInput _gameInput;
     [Inject]
-    private void Inject(GameInput input)
+    private void Inject(GameInput input, CoroutineRunner runner)
     {
       _gameInput = input;
+      _coroutineRunner = runner;
     }
     private void Awake()
     {
-      _context = ProjectContext.Instance;
-      _container = _context.Container;
-      
-      _coroutineRunner = Instantiate(coroutineRunnerPrefab,_context.transform).GetComponent<CoroutineRunner>();
-      _container.Bind<CoroutineRunner>().FromInstance(_coroutineRunner).AsSingle().NonLazy();
-      
       _gameInput.Enable();
       
-      Game game = new Game(_coroutineRunner, _loadingScreen);
-      _container.Bind<Game>().FromInstance(game).AsSingle().NonLazy();
-      
+      Game.Initialize(_coroutineRunner, _loadingScreen);
     }
   }
 }

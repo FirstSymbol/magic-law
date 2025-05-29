@@ -14,9 +14,7 @@ namespace ProjectContent.Code.Csharps.Architecture
       _states = new Dictionary<Type, ExitableState>()
       {
         {typeof(InitialState), new InitialState(this)},
-        {typeof(LoadSceneState),new LoadSceneState(this,coroutineRunner,ls)},
-        {typeof(GameloopState), new GameloopState(this)},
-        {typeof(InitialGameloopState), new InitialGameloopState(this)}
+        {typeof(LoadSceneState),new LoadSceneState(this,coroutineRunner,ls)}
       };
     }
   }

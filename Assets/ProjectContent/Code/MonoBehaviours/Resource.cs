@@ -8,7 +8,6 @@ namespace ProjectContent.Code.MonoBehaviours
   {
     public SlotData ResourceData;
     public int ExtractionCount = 1;
-    
     public void TakeDamage(float damage, GameObject sender = null)
     {
       if (sender != null)

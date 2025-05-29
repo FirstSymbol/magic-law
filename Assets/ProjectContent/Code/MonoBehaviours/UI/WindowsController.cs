@@ -2,6 +2,7 @@
 using ProjectContent.Code.ToolsAndExtentionsScripts.DictionarySerializer;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using UnityEngine;
+using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.UI
 {

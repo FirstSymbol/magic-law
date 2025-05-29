@@ -28,22 +28,23 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       _gameInput = gameInput;
     }
-
-    private void OnEnable()
+    
+    private void Init()
     {
       Inventory.OnSlotUpdated += SlotUpdate;
       _gameInput.Player.ScrollWheel.started += SwitchSlot;
     }
 
-    private void OnDisable()
+    private void Start()
+    {
+      Init();
+      UpdateView();
+    }
+
+    private void OnDestroy()
     {
       Inventory.OnSlotUpdated -= SlotUpdate;
       _gameInput.Player.ScrollWheel.started -= SwitchSlot;
-    }
-
-    private void Start()
-    {
-      UpdateView();
     }
 
     private void SlotUpdate(int index)

@@ -8,7 +8,7 @@ using static ProjectContent.Code.Csharps.Enums.ConstValues.Animation;
 namespace ProjectContent.Code.MonoBehaviours
 {
   [RequireComponent(typeof(Creature))]
-  public class CreatureAnimationController : UnityEngine.MonoBehaviour
+  public class CreatureAnimationController : MonoBehaviour
   {
     public Animator animator;
     public Creature Creature;

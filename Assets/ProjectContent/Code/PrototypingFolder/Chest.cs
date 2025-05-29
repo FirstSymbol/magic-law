@@ -31,7 +31,7 @@ namespace ProjectContent.Code.PrototypingFolder
     private void Start()
     {
       _storageWindow = _uiController.WindowsController.GetWindow<StorageWindow>();
-      InventoryViewLinker.inventoryView = _storageWindow.inventoryView;
+      InventoryViewLinker.inventoryView = _storageWindow.InventoryView;
     }
   
     public void Interact(GameObject sender)

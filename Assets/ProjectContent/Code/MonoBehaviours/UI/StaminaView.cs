@@ -1,5 +1,6 @@
 ﻿using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
+using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TMPro;
 using UnityEngine;
@@ -10,20 +11,26 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   public class StaminaView : MonoBehaviour
   {
     public TextMeshProUGUI StaminaText;
-    public Creature Creature;
+    private CreatureFabric _creatureFabric;
+    private Player _player;
 
     [Inject]
-    private void Inject(Player player)
+    private void Inject(CreatureFabric creatureFabric)
     {
-      Creature = player;
+      _creatureFabric = creatureFabric;
     }
     
-    private void Awake()
+    private void Start()
     {
-      Creature.creatureStats.Stamina.OnValueChanged += ChangeText;
-      ChangeText(Creature.creatureStats.Stamina);
+      _creatureFabric.OnPlayerCreated += Init;
     }
 
+    private void Init()
+    {
+      _player = _creatureFabric.Player;
+      _player.creatureStats.Stamina.OnValueChanged += ChangeText;
+      ChangeText(_player.creatureStats.Stamina);
+    }
     private void ChangeText(StatBase obj)
     {
       StaminaText.text = "Stamina: " + obj.Value;
@@ -31,7 +38,11 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 
     private void OnDestroy()
     {
-      Creature.creatureStats.Health.OnValueChanged -= ChangeText;
+      if (_player != null)
+      {
+        _player.creatureStats.Stamina.OnValueChanged -= ChangeText;
+      }
+      _creatureFabric.OnPlayerCreated -= Init;
     }
   }
 }

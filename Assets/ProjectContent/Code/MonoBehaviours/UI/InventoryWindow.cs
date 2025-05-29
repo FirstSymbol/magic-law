@@ -1,4 +1,6 @@
-﻿using UnityEngine.InputSystem;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.UI
@@ -6,8 +8,6 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   public class InventoryWindow : UIWindow
   {
     public InventoryView InventoryView;
-    
-    
     private GameInput _gameInput;
     
     [Inject]

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using ProjectContent.Code.MonoBehaviours.UI;
 using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Code.PrototypingFolder.UI;
-using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -43,14 +41,7 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
     {
       Debug.Log("Player interact with " + Interaction.GetCurrentInteraction().gameObject.name);
     }
-
-    private void OnEnable()
-    {
-      _gameInput.Player.LBM.started += UseItem;
-      _gameInput.Player.RBM.started += AlternateUseItem;
-      _gameInput.UI.OpenCraft.performed += OpenCraft;
-    }
-
+    
     private void OpenCraft(InputAction.CallbackContext obj)
     {
       if (PlayerCraftingStation)
@@ -61,15 +52,25 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
 
     private void Start()
     {
-      _uiController.WindowsController.GetWindow<FastPanelWindow>().InventoryView.Connect(FastInventory);
-      _uiController.WindowsController.GetWindow<InventoryWindow>().InventoryView.Connect(MainInventory);
+      Init();
       
     }
 
-    private void OnDisable()
+    private void Init()
+    {
+      _gameInput.Player.LBM.started += UseItem;
+      _gameInput.Player.RBM.started += AlternateUseItem;
+      _gameInput.UI.OpenCraft.performed += OpenCraft;
+      
+      _uiController.WindowsController.GetWindow<FastPanelWindow>().InventoryView.Connect(FastInventory);
+      _uiController.WindowsController.GetWindow<InventoryWindow>().InventoryView.Connect(MainInventory);
+    }
+
+    private void OnDestroy()
     {
       _gameInput.Player.LBM.started -= UseItem;
       _gameInput.Player.RBM.started -= AlternateUseItem;
+      _gameInput.UI.OpenCraft.performed -= OpenCraft;
     }
 
 

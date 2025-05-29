@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace ProjectContent.Code.Csharps.Enums
 {
@@ -33,6 +34,11 @@ namespace ProjectContent.Code.Csharps.Enums
       
       #endregion
       
+    }
+
+    public static class Addressables
+    {
+      public static AssetReferenceGameObject PlayerPrefab = new AssetReferenceGameObject("PlayerPrefab");
     }
   }
 }

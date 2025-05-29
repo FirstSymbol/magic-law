@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1776033834478449488}
   - component: {fileID: 4913643096039692536}
   - component: {fileID: 8515257528174258125}
+  - component: {fileID: 4006874794052936222}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3097944351351673615}
+  - {fileID: 1242650828076133870}
   - {fileID: 7119411120863094645}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 7965121592905876632}
+  CoroutineRunner: {fileID: 4006874794052936222}
+--- !u!114 &4006874794052936222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2388603026969033681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4af8b55a7a3430f9d7abf49554cb685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3066173045216443880
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +421,7 @@ MonoBehaviour:
   _loadingText: LOADING
   LoadingComp: {fileID: 7011532076516127010}
   LoadingCanvas: {fileID: 816520829080662858}
---- !u!1001 &8213935608381972834
+--- !u!1001 &5349450949811642243
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -464,8 +478,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1ae2e85c444e3f4cb28d2433c58b400, type: 3}
---- !u!4 &3097944351351673615 stripped
+--- !u!4 &1242650828076133870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6558324162131440237, guid: c1ae2e85c444e3f4cb28d2433c58b400, type: 3}
-  m_PrefabInstance: {fileID: 8213935608381972834}
+  m_PrefabInstance: {fileID: 5349450949811642243}
   m_PrefabAsset: {fileID: 0}

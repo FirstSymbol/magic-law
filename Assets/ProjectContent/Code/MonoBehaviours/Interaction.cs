@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using UnityEngine;
@@ -69,7 +70,12 @@ namespace ProjectContent.Code.MonoBehaviours
       }
     }
 
-    private void OnEnable()
+    private void Start()
+    {
+      Init();
+    }
+
+    private void Init()
     {
       _gameInput.Player.Interaction.performed += Interact;
       
@@ -79,7 +85,7 @@ namespace ProjectContent.Code.MonoBehaviours
       trigger.OnTriggerExit += ExitInteraction;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
       _gameInput.Player.Interaction.performed += Interact;
       

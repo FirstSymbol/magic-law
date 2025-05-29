@@ -1,5 +1,6 @@
 ﻿using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
+using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TMPro;
 using UnityEngine;
@@ -10,18 +11,18 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   public class HealthView : MonoBehaviour
   {
     public TextMeshProUGUI HealthText;
-    public Creature Creature;
+    private CreatureFabric _creatureFabric;
+    private Player _player;
+    
     
     [Inject]
-    private void Inject(Player player)
+    private void Inject(CreatureFabric creatureFabric)
     {
-      Creature = player;
+      _creatureFabric = creatureFabric;
     }
-    
-    private void Awake()
+    private void Start()
     {
-      Creature.creatureStats.Health.OnValueChanged += ChangeText;
-      ChangeText(Creature.creatureStats.Health);
+      _creatureFabric.OnPlayerCreated += Init;
     }
 
     private void ChangeText(StatBase obj)
@@ -29,9 +30,19 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       HealthText.text = "Health: " + obj.Value;
     }
 
+    private void Init()
+    {
+      _player = _creatureFabric.Player;
+      _player.creatureStats.Health.OnValueChanged += ChangeText;
+      ChangeText(_player.creatureStats.Health);
+    }
     private void OnDestroy()
     {
-      Creature.creatureStats.Health.OnValueChanged -= ChangeText;
+      if (_player != null)
+      {
+        _player.creatureStats.Health.OnValueChanged -= ChangeText;
+      }
+      _creatureFabric.OnPlayerCreated -= Init;
     }
   }
 }

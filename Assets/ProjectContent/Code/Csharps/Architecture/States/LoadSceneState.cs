@@ -46,12 +46,10 @@ namespace ProjectContent.Code.Csharps.Architecture.States
         yield break;
       }
       _loadingScreen.Show();
-      yield return new WaitForSeconds(2f);
       LoadingScreen loadingScreen;
       sceneAsync.completed += (AsyncOperation _) =>
       {
         Debug.Log($"Scene {sceneName} successfully loaded!");
-        StateMachine.Enter<GameloopState>();
         _loadingScreen.Hide();
       };
       

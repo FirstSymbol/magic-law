@@ -8,8 +8,6 @@ namespace ProjectContent.Code.MonoBehaviours
   public class MovementController : UnityEngine.MonoBehaviour
   {
     public Vector2 Velocity;
-    
-    public InputActionReference moveAction;
     private GameInput _gameInput;
 
     [Inject]
