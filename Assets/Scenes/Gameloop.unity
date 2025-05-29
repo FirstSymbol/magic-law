@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 1001352004}
   - component: {fileID: 1001352003}
   - component: {fileID: 1001352002}
+  - component: {fileID: 1001352005}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -679,6 +680,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1001352005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001352001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe3ef4562b0464e8b686f113c925811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CinemachineCamera: {fileID: 1001352003}
 --- !u!1 &1007784255
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1007784258}
   - {fileID: 1007784259}
+  - {fileID: 1007784258}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -45334,7 +45348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240435621490381627, guid: 32b1bf5546d74c24d9011081c7d81680, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 5427443017505253161, guid: 32b1bf5546d74c24d9011081c7d81680, type: 3}
       propertyPath: m_AnchorMax.x
