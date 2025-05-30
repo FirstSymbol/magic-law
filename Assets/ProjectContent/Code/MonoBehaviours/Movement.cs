@@ -32,7 +32,6 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       _movementController = movementController;
       _gameInput = gameInput;
-      Debug.Log("_gameInput controller injected");
     }
     
     private void Awake()
@@ -76,7 +75,9 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void Dash(InputAction.CallbackContext obj)
     {
-      if((_isDashing || _movementController.Velocity.magnitude == 0) && _creature.creatureStats.Stamina.Value > RunCoastPerSec) return;
+      if(_isDashing || 
+         _movementController.Velocity.magnitude == 0 || 
+         _creature.creatureStats.Stamina.Value < RunCoastPerSec) return;
         StartCoroutine(Dashing());
     }
 
