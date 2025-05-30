@@ -1,6 +1,4 @@
-﻿using System;
-using ProjectContent.Code.Csharps.Architecture;
-using ProjectContent.Code.Csharps.Architecture.States;
+﻿using ProjectContent.Code.Csharps.Architecture;
 using ProjectContent.Code.PrototypingFolder;
 using UnityEngine;
 using Zenject;
@@ -14,11 +12,6 @@ namespace ProjectContent.Code.MonoBehaviours.ZenjectInstallers
     
     private GameloopStateMachine _stateMachine;
     private CreatureFabric _creatureFabric;
-    public override void Start()
-    {
-      base.Start();
-      _stateMachine.Enter<InitialGameloopState>();
-    }
 
     public override void InstallBindings()
     {

@@ -10,7 +10,8 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   {
     public SerializableDictionary<TypeReference<UIWindow>, UIWindow> Windows;
     public HashSet<UIWindow> OpenedWindows { get; } = new();
-
+    
+    
     private void Start()
     {
       foreach (var window in Windows.Values) window.Initialize();

@@ -16,7 +16,6 @@ namespace ProjectContent.Code.MonoBehaviours.ZenjectInstallers
 
         public override void InstallBindings()
         {
-            
             Container.Bind<MovementController>().FromInstance(MovementController).AsSingle().NonLazy();
             Container.Bind<WindowsController>().FromInstance(WindowsController).AsSingle().NonLazy();
             Container.Bind<UIController>().FromInstance(UIController).AsSingle().NonLazy();

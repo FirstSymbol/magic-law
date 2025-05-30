@@ -22,7 +22,9 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     }
     private void Start()
     {
-      _creatureFabric.OnPlayerCreated += Init;
+      if (_creatureFabric.Player != null)
+        OnPlayerCreated();
+      _creatureFabric.OnPlayerCreated += OnPlayerCreated;
     }
 
     private void ChangeText(StatBase obj)
@@ -30,7 +32,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       HealthText.text = "Health: " + obj.Value;
     }
 
-    private void Init()
+    private void OnPlayerCreated()
     {
       _player = _creatureFabric.Player;
       _player.creatureStats.Health.OnValueChanged += ChangeText;
@@ -38,11 +40,9 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     }
     private void OnDestroy()
     {
-      if (_player != null)
-      {
+      if (_player != null) 
         _player.creatureStats.Health.OnValueChanged -= ChangeText;
-      }
-      _creatureFabric.OnPlayerCreated -= Init;
+      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }
   }
 }

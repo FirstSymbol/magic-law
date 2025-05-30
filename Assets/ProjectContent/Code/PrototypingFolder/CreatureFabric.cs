@@ -27,6 +27,7 @@ namespace ProjectContent.Code.PrototypingFolder
       Player = Object.Instantiate(_playerPrefab, transform.position, Quaternion.identity).GetComponent<Player>();
       Player.transform.SetParent(transform.parent);
       OnPlayerCreated?.Invoke();
+      Debug.LogWarning("[CreatureFabric] Player created!");
       return Player;
     }
   }

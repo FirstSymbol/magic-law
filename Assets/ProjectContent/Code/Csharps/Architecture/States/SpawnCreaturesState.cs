@@ -30,7 +30,6 @@ namespace ProjectContent.Code.Csharps.Architecture.States
     private void SpawnPlayer()
     {
       var p = _creatureFabric.CreatePlayer(GameObject.FindWithTag("PlayerSpawnpoint").transform);
-      Debug.LogWarning("[SpawnCreaturesState] Player is spawned");
     }
   }
 }

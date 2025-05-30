@@ -1,5 +1,5 @@
-﻿using ProjectContent.Code.Csharps.Stats;
-using ProjectContent.Code.MonoBehaviours.Creatures;
+﻿using System;
+using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using TMPro;
@@ -19,13 +19,15 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     {
       _creatureFabric = creatureFabric;
     }
-    
+
     private void Start()
     {
-      _creatureFabric.OnPlayerCreated += Init;
+      if (_creatureFabric.Player != null)
+        OnPlayerCreated();
+      _creatureFabric.OnPlayerCreated += OnPlayerCreated;
     }
 
-    private void Init()
+    private void OnPlayerCreated()
     {
       _player = _creatureFabric.Player;
       _player.creatureStats.Stamina.OnValueChanged += ChangeText;
@@ -42,7 +44,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       {
         _player.creatureStats.Stamina.OnValueChanged -= ChangeText;
       }
-      _creatureFabric.OnPlayerCreated -= Init;
+      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }
   }
 }

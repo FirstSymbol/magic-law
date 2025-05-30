@@ -1,6 +1,5 @@
 ﻿using System;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +18,9 @@ namespace ProjectContent.Code.PrototypingFolder
 
     private void Start()
     {
-      _creatureFabric.OnPlayerCreated = OnPlayerCreated;
+      _creatureFabric.OnPlayerCreated += OnPlayerCreated;
+      if (_creatureFabric.Player != null) 
+        OnPlayerCreated();
     }
 
     private void OnPlayerCreated()
@@ -28,6 +29,11 @@ namespace ProjectContent.Code.PrototypingFolder
       {
         CinemachineCamera.Follow = _creatureFabric.Player.transform;
       }
+    }
+
+    private void OnDestroy()
+    {
+      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }
   }
 }

@@ -1,5 +1,7 @@
-﻿using ProjectContent.Code.PrototypingFolder;
+﻿using System;
+using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
@@ -18,15 +20,18 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       _creatureFabric = creatureFabric;
       _gameInput = gameInput;
     }
+    
     public override void Initialize()
     {
-      _creatureFabric.OnPlayerCreated += Init;
+      if (_creatureFabric.Player != null)
+        OnPlayerCreated();
+      _creatureFabric.OnPlayerCreated += OnPlayerCreated;
+      
       _gameInput.UI.OpenCraft.performed += ToggleOpen;
       gameObject.SetActive(false);
-      
     }
 
-    private void Init()
+    private void OnPlayerCreated()
     {
       _player = _creatureFabric.Player;
       View.Connect(_player.PlayerCraftingStation);
@@ -54,7 +59,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     private void OnDestroy()
     {
       _gameInput.UI.OpenCraft.performed -= ToggleOpen;
-      _creatureFabric.OnPlayerCreated -= Init;
+      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }
   }
 }
