@@ -52,8 +52,6 @@ namespace ProjectContent.Code.MonoBehaviours
       if (index != SelectedSlotIndex) return;
       
       UpdateView();
-      //SlotSwitched?.Invoke(GetSelectedSlot());
-      //SlotSwitchedIndexes?.Invoke(SelectedSlotIndex, SelectedSlotIndex);
     }
 
     public Slot GetSelectedSlot()

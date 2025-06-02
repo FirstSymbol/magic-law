@@ -3,8 +3,14 @@ using UnityEngine.AddressableAssets;
 
 namespace ProjectContent.Code.Csharps.Enums
 {
+  /// <summary>
+  /// Все нужные константные значения для доступа из любой точки системы.
+  /// </summary>
   public static class ConstValues
-  { 
+  {
+    /// <summary>
+    /// Наименования сцен
+    /// </summary>
     public static class Scenes
     {
       public const string MainMenu = "MainMenu";
@@ -15,6 +21,9 @@ namespace ProjectContent.Code.Csharps.Enums
     {
       
     }
+    /// <summary>
+    /// Название переменных аниматоров.
+    /// </summary>
     public static class Animation
     {
       #region CreatureAnimations
@@ -36,6 +45,9 @@ namespace ProjectContent.Code.Csharps.Enums
       
     }
 
+    /// <summary>
+    /// Ссылки для получения адресуемых ассетов.
+    /// </summary>
     public static class Addressables
     {
       public static AssetReferenceGameObject PlayerPrefab = new AssetReferenceGameObject("PlayerPrefab");

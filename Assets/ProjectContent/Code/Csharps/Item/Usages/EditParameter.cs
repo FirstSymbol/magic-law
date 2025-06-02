@@ -1,12 +1,14 @@
 ﻿using System;
 using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
-using ProjectContent.Code.ToolsAndExtentionsScripts;
 using ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer;
 using UnityEngine;
 
 namespace ProjectContent.Code.Csharps.Item.Usages
 {
+  /// <summary>
+  /// Действие использования отвечающее за изменение характеристики/параметра на определенную единицу.
+  /// </summary>
   [Serializable]
   public class EditParameter : UsageAction
   {

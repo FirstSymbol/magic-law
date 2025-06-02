@@ -1,8 +1,10 @@
 ﻿using ProjectContent.Code.MonoBehaviours;
-using ProjectContent.Code.PrototypingFolder;
 
 namespace ProjectContent.Code.Csharps
 {
+  /// <summary>
+  /// Интерфейс использования предмета
+  /// </summary>
   public interface IKeepItems
   {
     public SlotSelector SlotSelector { get; }

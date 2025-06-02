@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 
 namespace ProjectContent.Code.Csharps
 {
+  /// <summary>
+  /// Класс данных который используется в слоте и содержит данные о хранимом предмете, его количестве, а также методы для взаимодействия с предметом.
+  /// </summary>
   [Serializable]
   public class SlotData
   {

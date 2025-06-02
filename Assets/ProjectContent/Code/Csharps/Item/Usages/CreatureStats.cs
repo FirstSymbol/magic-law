@@ -4,6 +4,10 @@ using ProjectContent.Code.Csharps.Stats;
 
 namespace ProjectContent.Code.Csharps.Item.Usages
 {
+  /// <summary>
+  /// Отвечающий за все возможны характеристики класс.
+  /// Serializable.
+  /// </summary>
   [Serializable]
   public class CreatureStats
   {

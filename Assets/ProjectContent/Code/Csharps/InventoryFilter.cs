@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.ScriptableObjects;
@@ -19,7 +17,9 @@ namespace ProjectContent.Code.PrototypingFolder
     Equals,
     MaxCount,
   }
-  
+  /// <summary>
+  /// Класс для фильтрации слотов в инвентаре
+  /// </summary>
   public class InventoryFilter
   {
     private Dictionary<InvFilterType, List<InvFilterParam>> _settings;
@@ -39,7 +39,12 @@ namespace ProjectContent.Code.PrototypingFolder
       
       SetSettingsDefaults();
     }
-
+    /// <summary>
+    /// Согласно введенным настройкам ищет все индексы в инвентаре, которые походят по нужному критерию.
+    /// </summary>
+    /// <param name="resultCount"></param>
+    /// <returns>Список индексов соответствующих настройкам</returns>
+    /// <exception cref="NullReferenceException"></exception>
     public List<int> Filter(int resultCount = -1)
     {
       if (_inv is null) throw new NullReferenceException("Inventory is null");
@@ -55,6 +60,12 @@ namespace ProjectContent.Code.PrototypingFolder
       return result;
     }
 
+    /// <summary>
+    /// Проверяет слот на содержание максимального количества предмета из возможного для конфига этого предмета.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns>True or False</returns>
+    /// <exception cref="Exception"></exception>
     private bool MaxCount(Slot slot)
     {
       if (_settings[InvFilterType.Include].Contains(InvFilterParam.MaxCount))
@@ -65,6 +76,12 @@ namespace ProjectContent.Code.PrototypingFolder
         throw new Exception("InvFilterType not supported");
     }
 
+    /// <summary>
+    /// Проверяет слот на то, содержит ли он эквивалентный фильтруемому предмету конфиг.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns>True or False</returns>
+    /// <exception cref="Exception"></exception>
     private bool Equals(Slot slot)
     {
       if (_settings[InvFilterType.Include].Contains(InvFilterParam.Equals))
@@ -73,7 +90,13 @@ namespace ProjectContent.Code.PrototypingFolder
         return slot.SlotData.Item != _itemConfig;
       else throw new Exception("InvFilterType not supported");
     }
-
+    
+    /// <summary>
+    /// Проверяет слот на то, пустой он или нет.
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <returns>True or False</returns>
+    /// <exception cref="Exception"></exception>
     private bool Empty(Slot slot)
     {
       if (_settings[InvFilterType.Include].Contains(InvFilterParam.Empty))
@@ -83,6 +106,9 @@ namespace ProjectContent.Code.PrototypingFolder
       else throw new Exception("InvFilterType not supported");
     }
 
+    /// <summary>
+    /// Установка всех настроек исходя из полей в переменных.
+    /// </summary>
     private void SetSettingsDefaults()
     {
       if (!_settings.ContainsKey(InvFilterType.Include)) _settings[InvFilterType.Include] = new List<InvFilterParam>();

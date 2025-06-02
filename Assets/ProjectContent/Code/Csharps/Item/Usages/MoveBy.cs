@@ -1,9 +1,11 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace ProjectContent.Code.Csharps.Item.Usages
 {
+  /// <summary>
+  /// Действие использования отвечающее за передвижение на определенное кол-во единиц относительно текущей позиции.
+  /// </summary>
   [Serializable]
   public class MoveBy : UsageAction
   {

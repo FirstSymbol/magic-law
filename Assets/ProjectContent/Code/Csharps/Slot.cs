@@ -4,6 +4,9 @@ using UnityEngine.Rendering.Universal;
 
 namespace ProjectContent.Code.Csharps
 {
+  /// <summary>
+  /// Класс хранилища предмета(слота) со всеми его настройками.
+  /// </summary>
   [Serializable]
   public class Slot
   {
@@ -37,7 +40,11 @@ namespace ProjectContent.Code.Csharps
     {
       OnSlotUpdated?.Invoke(slotIndex);
     }
-
+    /// <summary>
+    /// Установка произвольных данных в слот.
+    /// </summary>
+    /// <param name="slotData"></param>
+    /// <param name="t"></param>
     private void SetData(SlotData slotData, bool t = true)
     {
       SlotData.SlotDataChanged -= InvokeOnSlotUpdated;
@@ -48,6 +55,11 @@ namespace ProjectContent.Code.Csharps
       OnSlotUpdated?.Invoke(index);
     }
 
+    /// <summary>
+    /// Помять данные слота местами.
+    /// </summary>
+    /// <param name="slotA"></param>
+    /// <param name="slotB"></param>
     public static void SwapData(Slot slotA, Slot slotB)
     {
       SlotData tempSlot = slotA.SlotData;

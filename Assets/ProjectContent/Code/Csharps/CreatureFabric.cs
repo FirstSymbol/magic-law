@@ -11,6 +11,9 @@ using Object = UnityEngine.Object;
 
 namespace ProjectContent.Code.PrototypingFolder
 {
+  /// <summary>
+  /// Фабрика создания существ
+  /// </summary>
   public class CreatureFabric
   {
     private GameObject _playerPrefab;
@@ -22,6 +25,11 @@ namespace ProjectContent.Code.PrototypingFolder
       _playerPrefab = playerPrefab;
     }
 
+    /// <summary>
+    /// Создает игрока
+    /// </summary>
+    /// <param name="transform"></param>
+    /// <returns>Player</returns>
     public Player CreatePlayer(Transform transform)
     {
       Player = Object.Instantiate(_playerPrefab, transform.position, Quaternion.identity).GetComponent<Player>();
