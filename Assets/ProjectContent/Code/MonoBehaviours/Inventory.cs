@@ -56,7 +56,7 @@ namespace ProjectContent.Code.MonoBehaviours
       var inventoryFilter = new InventoryFilter(this, item, _addFilter);
 
       var t = inventoryFilter.Filter();
-
+      
       foreach (var i in t)
       {
         count -= AddItemByIndex(i, item, count);
@@ -95,9 +95,10 @@ namespace ProjectContent.Code.MonoBehaviours
     public void RemoveItem(ItemConfig item, int count)
     {
       InventoryFilter inventoryFilter = new(this, item, _removeFiler);
-      foreach (var i in inventoryFilter.Filter())
+      var t = inventoryFilter.Filter();
+      foreach (var i in t)
       {
-        count -= RemoveItemByIndex(i);
+        count -= RemoveItemByIndex(i, count);
         if (count <= 0) return;
       }
 
@@ -168,9 +169,11 @@ namespace ProjectContent.Code.MonoBehaviours
     /// </summary>
     /// <param name="index"></param>
     /// <returns>Removed amount of item</returns>
-    private int RemoveItemByIndex(int index)
+    private int RemoveItemByIndex(int index, int count)
     {
-      var removedCount = Slots[index].SlotData.Count;
+      var t1 = Slots[index].SlotData.Count - count;
+      var removedCount = t1 >= 0 ? count : Slots[index].SlotData.Count;
+      
       Slots[index].SlotData.SubValue(removedCount);
       OnSlotUpdated?.Invoke(index);
       return removedCount;

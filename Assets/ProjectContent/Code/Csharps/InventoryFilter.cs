@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.ScriptableObjects;
 
@@ -59,7 +60,17 @@ namespace ProjectContent.Code.Csharps
       for (var i = 0; i < _inv.Slots.Length; i++)
       {
         var s = _inv.Slots[i];
-        if (Empty(s) || (Equals(s) && MaxCount(s))) result.Add(i);
+        bool isEmpty = Empty(s);
+        if (_settings[InvFilterType.Include].Contains(InvFilterParam.Empty))
+        {
+          if (isEmpty || Equals(s) && MaxCount(s)) result.Add(i);
+          continue;
+        }
+        else
+        {
+          if (isEmpty && Equals(s) && MaxCount(s)) result.Add(i);
+        }
+        
       }
 
       return result;
@@ -115,8 +126,8 @@ namespace ProjectContent.Code.Csharps
     /// </summary>
     private void SetSettingsDefaults()
     {
-      if (!_settings.ContainsKey(InvFilterType.Include)) _settings[InvFilterType.Include] = new List<InvFilterParam>();
-      if (!_settings.ContainsKey(InvFilterType.Exclude)) _settings[InvFilterType.Exclude] = new List<InvFilterParam>();
+      if (!_settings.ContainsKey(InvFilterType.Include)) _settings.Add(InvFilterType.Include,new List<InvFilterParam>());
+      if (!_settings.ContainsKey(InvFilterType.Exclude)) _settings.Add(InvFilterType.Exclude,new List<InvFilterParam>());
 
       var filterParams = new HashSet<InvFilterParam>
       {
