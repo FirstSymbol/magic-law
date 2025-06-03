@@ -1,5 +1,4 @@
-﻿using System;
-using ProjectContent.Code.Csharps;
+﻿using ProjectContent.Code.Csharps;
 using ProjectContent.Code.PrototypingFolder;
 using TMPro;
 using UnityEngine;
@@ -36,7 +35,6 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void UpdateView(Slot t)
     {
-      //var t = _slotSelector.GetSelectedSlot();
       if (SlotText is not null)
         SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
     }

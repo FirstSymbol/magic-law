@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
+  /// <summary>
+  /// Класс для начала игры, который всегда запускает со сцены инициализации.
+  /// </summary>
   public class GameRunner : UnityEngine.MonoBehaviour
   {
     private void Awake()

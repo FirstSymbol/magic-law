@@ -1,10 +1,10 @@
 ﻿using ProjectContent.Code.Csharps;
-using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.MonoBehaviours.UI;
+using ProjectContent.Code.PrototypingFolder;
 using UnityEngine;
 using Zenject;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.MonoBehaviours
 {
   [RequireComponent(typeof(Inventory))]
   public class Chest : Entity, IInteractableEntity
@@ -31,7 +31,7 @@ namespace ProjectContent.Code.PrototypingFolder
     private void Start()
     {
       _storageWindow = _uiController.WindowsController.GetWindow<StorageWindow>();
-      InventoryViewLinker.inventoryView = _storageWindow.InventoryView;
+      InventoryViewLinker.InventoryView = _storageWindow.InventoryView;
     }
   
     public void Interact(GameObject sender)

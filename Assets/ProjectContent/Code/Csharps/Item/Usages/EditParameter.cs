@@ -18,7 +18,7 @@ namespace ProjectContent.Code.Csharps.Item.Usages
     {
       if (sender.TryGetComponent(out Creature creature))
       {
-        var stat = creature.creatureStats.stats[payloadType.Type];
+        var stat = creature.CreatureStats.stats[payloadType.Type];
         stat.AddValue(changeValue);
 
 #if DEBUG

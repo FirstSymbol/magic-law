@@ -1,16 +1,19 @@
-﻿using System;
-using ProjectContent.Code.Csharps.Stats;
+﻿using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 using static ProjectContent.Code.Csharps.Enums.ConstValues.Animation;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Базовый класс управления анимациями существа
+  /// </summary>
   [RequireComponent(typeof(Creature))]
   public class CreatureAnimationController : MonoBehaviour
   {
-    public Animator animator;
+    public Animator Animator;
     public Creature Creature;
 
     protected MovementController _movementController;
@@ -23,36 +26,36 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void Start()
     {
-      Creature.creatureStats.stats[typeof(Health)].OnValueChanged += UpdateHeath;
+      Creature.CreatureStats.stats[typeof(Health)].OnValueChanged += UpdateHeath;
     }
 
     private void UpdateHeath(StatBase stat)
     {
       if (stat.Value <= 0)
       {
-        animator.SetBool(IsDeath, true);
+        Animator.SetBool(IsDeath, true);
         return;
       }
       
-      animator.SetBool(IsTakeDamage, true);
+      Animator.SetBool(IsTakeDamage, true);
     }
 
     protected virtual void Update()
     {
       if (_movementController.Velocity.magnitude > 0f)
       {
-        animator.SetBool(IsRunning, true);
+        Animator.SetBool(IsRunning, true);
         if (_movementController.Velocity.y > 0)
-          animator.SetBool(IsRunUp, true);
+          Animator.SetBool(IsRunUp, true);
         else if (_movementController.Velocity.y < 0)
-          animator.SetBool(IsRunUp, false);
+          Animator.SetBool(IsRunUp, false);
         if (_movementController.Velocity.x != 0)
-          animator.SetBool(IsRunSide, true);
+          Animator.SetBool(IsRunSide, true);
         else
-          animator.SetBool(IsRunSide, false);
+          Animator.SetBool(IsRunSide, false);
       }
       else
-        animator.SetBool(IsRunning, false);
+        Animator.SetBool(IsRunning, false);
     }
   }
 }

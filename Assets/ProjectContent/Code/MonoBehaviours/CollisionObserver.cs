@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Скрипт обработки соприкосновений
+  /// </summary>
   [RequireComponent(typeof(Collider2D))]
-  public class ColissionObserver : UnityEngine.MonoBehaviour
+  public class CollisionObserver : MonoBehaviour
   {
     public Action<GameObject> OnColliderEnter;
     public Action<GameObject> OnColliderExit;

@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
   [RequireComponent(typeof(Rigidbody2D))]
-  public class Movement : UnityEngine.MonoBehaviour
+  public class Movement : MonoBehaviour
   {
-    [Inject] private MovementController _movementController;
     public Rigidbody2D Rigidbody;
-    public Creature _creature;
-    public SpriteRenderer spriteRenderer;
+    public Creature Creature;
+    public SpriteRenderer SpriteRenderer;
     public float RunCoastPerSec = 1f;
-    private readonly float RunModifier = 1.5f;
     [ReadOnly] public float SpeedModifier = 1f;
     [ReadOnly] public int DashCoast = 2; 
     public float DashDistance = 1f;
     public float DashTime = 0.5f;
-    [Inject] private GameInput _gameInput;
-    private WaitForSeconds _wait = new WaitForSeconds(1f);
+    private MovementController _movementController;
+    private GameInput _gameInput;
     private Coroutine _coroutine;
     private bool _isDashing;
+    private const float RunModifier = 1.5f;
+    private readonly WaitForSeconds _wait = new WaitForSeconds(1f);
 
     [Inject]
     private void Inject(MovementController movementController, GameInput gameInput)
@@ -36,7 +34,7 @@ namespace ProjectContent.Code.MonoBehaviours
     
     private void Awake()
     {
-      _creature = GetComponent<Creature>();
+      Creature = GetComponent<Creature>();
     }
 
     private void Start()
@@ -70,14 +68,14 @@ namespace ProjectContent.Code.MonoBehaviours
       {
         return;
       }
-      Rigidbody.linearVelocity = _movementController.Velocity * _creature.creatureStats.Speed.Value * SpeedModifier;
+      Rigidbody.linearVelocity = _movementController.Velocity * Creature.CreatureStats.Speed.Value * SpeedModifier;
     }
 
     private void Dash(InputAction.CallbackContext obj)
     {
       if(_isDashing || 
          _movementController.Velocity.magnitude == 0 || 
-         _creature.creatureStats.Stamina.Value < RunCoastPerSec) return;
+         Creature.CreatureStats.Stamina.Value < RunCoastPerSec) return;
         StartCoroutine(Dashing());
     }
 
@@ -87,7 +85,7 @@ namespace ProjectContent.Code.MonoBehaviours
       float dashPower;
       float timer = 0f;
       Vector2 dashVector = _movementController.Velocity;
-      _creature.creatureStats.Stamina.SubstractValue(DashCoast);
+      Creature.CreatureStats.Stamina.SubstractValue(DashCoast);
       
       while (timer < DashTime)
       {
@@ -101,7 +99,7 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void StartRun(InputAction.CallbackContext obj)
     {
-      if (_creature.creatureStats.Stamina.Value > RunCoastPerSec)
+      if (Creature.CreatureStats.Stamina.Value > RunCoastPerSec)
       {
         _coroutine = StartCoroutine(RunCoroutine());
       }
@@ -116,9 +114,9 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private IEnumerator RunCoroutine()
     {
-      while (_creature.creatureStats.Stamina.Value > RunCoastPerSec)
+      while (Creature.CreatureStats.Stamina.Value > RunCoastPerSec)
       {
-        _creature.creatureStats.Stamina.SubstractValue(RunCoastPerSec);
+        Creature.CreatureStats.Stamina.SubstractValue(RunCoastPerSec);
         SpeedModifier = RunModifier;
         yield return _wait;
       }
@@ -129,13 +127,13 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void FlifByX()
     {
-      if (_movementController.Velocity.x < 0 && spriteRenderer != null)
+      if (_movementController.Velocity.x < 0 && SpriteRenderer != null)
       {
-        spriteRenderer.flipX = true;
+        SpriteRenderer.flipX = true;
       }
-      else if (_movementController.Velocity.x >= 0 && spriteRenderer != null)
+      else if (_movementController.Velocity.x >= 0 && SpriteRenderer != null)
       {
-        spriteRenderer.flipX = false;
+        SpriteRenderer.flipX = false;
       }
     }
   }

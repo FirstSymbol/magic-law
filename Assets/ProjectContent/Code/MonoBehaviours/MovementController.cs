@@ -1,10 +1,12 @@
-﻿using System;
-using UnityEngine.InputSystem;
+﻿using UnityEngine.InputSystem;
 using Zenject;
 using Vector2 = UnityEngine.Vector2;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Скрипт задания вектора движения.
+  /// </summary>
   public class MovementController : UnityEngine.MonoBehaviour
   {
     public Vector2 Velocity;

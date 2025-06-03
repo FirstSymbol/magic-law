@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
+  /// <summary>
+  /// Базовый класс входных точек
+  /// </summary>
   [RequireComponent(typeof(EntryPoint))]
   public abstract class EntryPointBase : MonoBehaviour
   {

@@ -1,25 +1,23 @@
-﻿using ProjectContent.Code.Csharps;
-using ProjectContent.Code.MonoBehaviours;
-using ProjectContent.Code.MonoBehaviours.UI;
+﻿using ProjectContent.Code.MonoBehaviours.UI;
 using TriInspector;
 using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.MonoBehaviours
 {
   public class InventoryViewLinker : MonoBehaviour
   {
-    public InventoryView inventoryView;
-    public Inventory inventory;
+    public InventoryView InventoryView;
+    public Inventory Inventory;
 
     [Button("Link Inventory View")]
     public void Link()
     {
-      inventoryView.Connect(inventory);
+      InventoryView.Connect(Inventory);
     }
 
     public void Unlink()
     {
-      inventoryView.Disconnect();
+      InventoryView.Disconnect();
     }
   }
 }

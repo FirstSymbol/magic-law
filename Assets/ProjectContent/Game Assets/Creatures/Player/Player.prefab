@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
-  creatureStats:
+  CreatureStats:
     Health:
       <Value>k__BackingField: 1000
       <MaxValue>k__BackingField: 0
@@ -476,9 +476,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7534009010087529930}
   - component: {fileID: 8342998018165857764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BodyTrigger
-  m_TagString: Untagged
+  m_TagString: BodyTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

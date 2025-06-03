@@ -1,14 +1,16 @@
 ﻿using ProjectContent.Code.Csharps;
-using ProjectContent.Code.PrototypingFolder;
 using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Компонент предмета в мире
+  /// </summary>
   [RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
-  public class ItemObject : UnityEngine.MonoBehaviour, IInteractableEntity
+  public class ItemObject : MonoBehaviour, IInteractableEntity
   {
-    public ItemConfig itemConfig;
+    public ItemConfig ItemConfig;
     public int Count;
     public bool IsInteracting { get; set; }
     public GameObject InteractorObject { get; set; }
@@ -23,7 +25,7 @@ namespace ProjectContent.Code.MonoBehaviours
 
     public void Initialize(ItemConfig itemConfig, int count)
     {
-      this.itemConfig = itemConfig;
+      this.ItemConfig = itemConfig;
       SpriteRenderer.sprite = itemConfig.Sprite;
       Count = count;
     }
@@ -46,7 +48,7 @@ namespace ProjectContent.Code.MonoBehaviours
       }
       else if (sender.TryGetComponent(out Inventory inventory))
       {
-        inventory.AddItem(itemConfig, Count);
+        inventory.AddItem(ItemConfig, Count);
         Destroy(gameObject);
       }
       

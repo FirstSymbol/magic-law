@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using UnityEngine;
@@ -8,10 +7,13 @@ using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Скрипт-компонент для взаимодействия с другими объектами
+  /// </summary>
   [RequireComponent(typeof(Creature))]
   public class Interaction : MonoBehaviour
   {
-    public ColissionObserver trigger;
+    public CollisionObserver Trigger;
     public readonly HashSet<IInteractableEntity> Interactions = new HashSet<IInteractableEntity>();
     private GameInput _gameInput;
 
@@ -79,20 +81,20 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       _gameInput.Player.Interaction.performed += Interact;
       
-      trigger.OnColliderEnter += EnterInteraction;
-      trigger.OnColliderExit += ExitInteraction;
-      trigger.OnTriggerEnter += EnterInteraction;
-      trigger.OnTriggerExit += ExitInteraction;
+      Trigger.OnColliderEnter += EnterInteraction;
+      Trigger.OnColliderExit += ExitInteraction;
+      Trigger.OnTriggerEnter += EnterInteraction;
+      Trigger.OnTriggerExit += ExitInteraction;
     }
 
     private void OnDestroy()
     {
       _gameInput.Player.Interaction.performed += Interact;
       
-      trigger.OnColliderEnter -= EnterInteraction;
-      trigger.OnColliderExit -= ExitInteraction;
-      trigger.OnTriggerEnter -= EnterInteraction;
-      trigger.OnTriggerExit -= ExitInteraction;
+      Trigger.OnColliderEnter -= EnterInteraction;
+      Trigger.OnColliderExit -= ExitInteraction;
+      Trigger.OnTriggerEnter -= EnterInteraction;
+      Trigger.OnTriggerExit -= ExitInteraction;
     }
   }
 }

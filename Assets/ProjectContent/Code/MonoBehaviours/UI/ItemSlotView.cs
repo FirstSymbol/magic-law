@@ -21,7 +21,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
           
           Slot dragSlot = _uiController.DragItems.DraggingSlot;
           Inventory dragInventory = _uiController.DragItems.DraggingInventory;
-          Slot selfSlot = InventoryView.Inventory.slots[Index];
+          Slot selfSlot = InventoryView.Inventory.Slots[Index];
           if (dragSlot == null || dragSlot.SlotData.Item == null)
           {
             if (selfSlot.SlotData.Item != null)
@@ -59,7 +59,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 
     private void SwapSlots(Slot dragSlot)
     {
-      Slot.SwapData(InventoryView.Inventory.slots[Index], dragSlot);
+      Slot.SwapData(InventoryView.Inventory.Slots[Index], dragSlot);
       _uiController.DragItems.DraggingSlot = null;
       _uiController.DragItems.DraggingInventory = null;
     }

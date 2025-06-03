@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
   public class EntryPoint : MonoBehaviour
   {

@@ -49,7 +49,9 @@ namespace ProjectContent.Code.PrototypingFolder
       
       _interactorInventory.AddItem(CraftBundles[craftBundleIndex].Items[index], amount);
       
+#if DEBUG
       Debug.Log($"Craft: {CraftBundles[craftBundleIndex].Items[index].name}");
+#endif
     }
     
     public void Interact(GameObject sender)

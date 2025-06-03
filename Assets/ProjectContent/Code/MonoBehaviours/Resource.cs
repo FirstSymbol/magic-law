@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
+  /// <summary>
+  /// Скрипт генератора ресурсов
+  /// </summary>
   public class Resource : MonoBehaviour, IDamageableEntity
   {
     public SlotData ResourceData;

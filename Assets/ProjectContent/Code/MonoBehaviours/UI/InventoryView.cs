@@ -15,7 +15,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       Inventory = inventory;
       inventory.OnSlotUpdated += UpdateSlot;
       
-      for (int i = 0; i < inventory.slots.Length; i++)
+      for (int i = 0; i < inventory.Slots.Length; i++)
       {
         var t = Instantiate(SlotPrefab, transform).GetComponent<ItemSlotView>();
         slots.Add(t);
@@ -25,7 +25,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       
       foreach (var slot in slots)
       {
-        slot.UpdateSlot(inventory.slots[slot.Index]);
+        slot.UpdateSlot(inventory.Slots[slot.Index]);
       }
     }
 
@@ -53,7 +53,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 
     private void UpdateSlot(int index)
     {
-      slots[index].UpdateSlot(Inventory.slots[index]);
+      slots[index].UpdateSlot(Inventory.Slots[index]);
     }
 
     private void OnDestroy()

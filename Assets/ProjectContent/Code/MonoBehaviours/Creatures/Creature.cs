@@ -4,16 +4,19 @@ using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours.Creatures
 {
+  /// <summary>
+  /// Базовый скрипт Creature. Содержит: Type и creatureStats
+  /// </summary>
   [RequireComponent(typeof(CreatureAnimationController))]
   public abstract class Creature : Entity
   {
     [field: SerializeField] public ECreatureType Type { get; private set; }
     
-    public CreatureStats creatureStats = new();
+    public CreatureStats CreatureStats = new();
 
     protected virtual void Awake()
     {
-      creatureStats.Initialize();
+      CreatureStats.Initialize();
     }
   }
 

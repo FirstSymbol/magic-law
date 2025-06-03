@@ -1,10 +1,8 @@
-﻿using System;
-using ProjectContent.Code.Csharps.Architecture;
+﻿using ProjectContent.Code.Csharps.Architecture;
 using ProjectContent.Code.Csharps.Architecture.States;
-using UnityEngine;
 using Zenject;
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
   public class GameloopEntryPoint : EntryPointBase
   {

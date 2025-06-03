@@ -56,7 +56,7 @@ namespace ProjectContent.Code.MonoBehaviours
 
     public Slot GetSelectedSlot()
     {
-      return Inventory.slots[SelectedSlotIndex];
+      return Inventory.Slots[SelectedSlotIndex];
     }
 
     private void SwitchSlot(InputAction.CallbackContext obj)

@@ -49,9 +49,9 @@ namespace ProjectContent.Code.PrototypingFolder
     {
       if (_inv is null) throw new NullReferenceException("Inventory is null");
       List<int> result = new List<int>();
-      for (int i = 0; i < _inv.slots.Length; i++)
+      for (int i = 0; i < _inv.Slots.Length; i++)
       {
-        Slot s = _inv.slots[i];
+        Slot s = _inv.Slots[i];
         if (Empty(s) || Equals(s) && MaxCount(s))
         {
           result.Add(i);         

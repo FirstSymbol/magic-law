@@ -5,13 +5,14 @@ using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
+  /// <summary>
+  /// Скрипт инициализации, который запускается в сцене инициализации.
+  /// </summary>
   public class InitialBootstrapper : MonoBehaviour
   {
     private ProjectContext _context;
     [Inject] private LoadingScreen _loadingScreen;
     
-
-    public GameObject coroutineRunnerPrefab;
 
     private CoroutineRunner _coroutineRunner;
     private GameInput _gameInput;

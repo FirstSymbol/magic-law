@@ -30,8 +30,8 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     private void OnPlayerCreated()
     {
       _player = _creatureFabric.Player;
-      _player.creatureStats.Stamina.OnValueChanged += ChangeText;
-      ChangeText(_player.creatureStats.Stamina);
+      _player.CreatureStats.Stamina.OnValueChanged += ChangeText;
+      ChangeText(_player.CreatureStats.Stamina);
     }
     private void ChangeText(StatBase obj)
     {
@@ -42,7 +42,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     {
       if (_player != null)
       {
-        _player.creatureStats.Stamina.OnValueChanged -= ChangeText;
+        _player.CreatureStats.Stamina.OnValueChanged -= ChangeText;
       }
       _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }

@@ -35,13 +35,13 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     private void OnPlayerCreated()
     {
       _player = _creatureFabric.Player;
-      _player.creatureStats.Health.OnValueChanged += ChangeText;
-      ChangeText(_player.creatureStats.Health);
+      _player.CreatureStats.Health.OnValueChanged += ChangeText;
+      ChangeText(_player.CreatureStats.Health);
     }
     private void OnDestroy()
     {
       if (_player != null) 
-        _player.creatureStats.Health.OnValueChanged -= ChangeText;
+        _player.CreatureStats.Health.OnValueChanged -= ChangeText;
       _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
     }
   }
