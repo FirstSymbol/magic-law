@@ -7,13 +7,14 @@ using UnityEngine;
 namespace ProjectContent.Code.Csharps.Item.Usages
 {
   /// <summary>
-  /// Действие использования отвечающее за изменение характеристики/параметра на определенную единицу.
+  ///   Действие использования отвечающее за изменение характеристики/параметра на определенную единицу.
   /// </summary>
   [Serializable]
   public class EditParameter : UsageAction
   {
     public TypeReference<StatBase> payloadType;
     public float changeValue;
+
     public override void Execute(GameObject sender)
     {
       if (sender.TryGetComponent(out Creature creature))
@@ -22,12 +23,9 @@ namespace ProjectContent.Code.Csharps.Item.Usages
         stat.AddValue(changeValue);
 
 #if DEBUG
-        Debug.Log( payloadType.Type + " - " + stat.Value);
+        Debug.Log(payloadType.Type + " - " + stat.Value);
 #endif
-        
       }
     }
-
-    
   }
 }

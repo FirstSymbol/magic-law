@@ -1,32 +1,27 @@
 ﻿using System;
-using ProjectContent.Code.MonoBehaviours.Creatures;
-using Zenject;
-using System.Collections.Generic;
-using ProjectContent.Code.Csharps.Enums;
 using ProjectContent.Game_Assets.Creatures.Player.Scripts;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using Object = UnityEngine.Object;
 
 
-namespace ProjectContent.Code.PrototypingFolder
+namespace ProjectContent.Code.Csharps
 {
   /// <summary>
-  /// Фабрика создания существ
+  ///   Фабрика создания существ
   /// </summary>
   public class CreatureFabric
   {
-    private GameObject _playerPrefab;
-    public Player Player;
+    private readonly GameObject _playerPrefab;
     public Action OnPlayerCreated;
-    
+    public Player Player;
+
     public CreatureFabric(GameObject playerPrefab)
     {
       _playerPrefab = playerPrefab;
     }
 
     /// <summary>
-    /// Создает игрока
+    ///   Создает игрока
     /// </summary>
     /// <param name="transform"></param>
     /// <returns>Player</returns>

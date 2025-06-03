@@ -13,7 +13,8 @@ namespace ProjectContent.Code.Csharps.Attributes
   {
     public float Value;
     public List<AttributeActiveType> ActiveTypes;
-    
-    [ReadOnly] abstract public SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; }
+
+    [ReadOnly]
+    public abstract SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; }
   }
 }

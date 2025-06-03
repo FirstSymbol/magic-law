@@ -1,14 +1,13 @@
 ﻿using ProjectContent.Code.Csharps.Stats;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 using static ProjectContent.Code.Csharps.Enums.ConstValues.Animation;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
   /// <summary>
-  /// Базовый класс управления анимациями существа
+  ///   Базовый класс управления анимациями существа
   /// </summary>
   [RequireComponent(typeof(Creature))]
   public class CreatureAnimationController : MonoBehaviour
@@ -17,27 +16,10 @@ namespace ProjectContent.Code.MonoBehaviours
     public Creature Creature;
 
     protected MovementController _movementController;
-    
-    [Inject]
-    private void Inject(MovementController movementController)
-    {
-      _movementController = movementController;
-    }
 
     private void Start()
     {
       Creature.CreatureStats.stats[typeof(Health)].OnValueChanged += UpdateHeath;
-    }
-
-    private void UpdateHeath(StatBase stat)
-    {
-      if (stat.Value <= 0)
-      {
-        Animator.SetBool(IsDeath, true);
-        return;
-      }
-      
-      Animator.SetBool(IsTakeDamage, true);
     }
 
     protected virtual void Update()
@@ -55,7 +37,26 @@ namespace ProjectContent.Code.MonoBehaviours
           Animator.SetBool(IsRunSide, false);
       }
       else
+      {
         Animator.SetBool(IsRunning, false);
+      }
+    }
+
+    [Inject]
+    private void Inject(MovementController movementController)
+    {
+      _movementController = movementController;
+    }
+
+    private void UpdateHeath(StatBase stat)
+    {
+      if (stat.Value <= 0)
+      {
+        Animator.SetBool(IsDeath, true);
+        return;
+      }
+
+      Animator.SetBool(IsTakeDamage, true);
     }
   }
 }

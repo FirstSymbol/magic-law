@@ -13,7 +13,7 @@ namespace ProjectContent.Code.MonoBehaviours.Architecture
     {
       _stateMachine = stateMachine;
     }
-    
+
     public override void StartEnter()
     {
       _stateMachine.Enter<InitialGameloopState>();

@@ -7,6 +7,5 @@ namespace ProjectContent.Code.ScriptableObjects
   public class CreatureConfig : ScriptableObject
   {
     public CreatureStats creatureStats;
-
   }
 }

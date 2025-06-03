@@ -6,7 +6,6 @@ using TriInspector;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours
@@ -14,26 +13,14 @@ namespace ProjectContent.Code.MonoBehaviours
   public class SlotSelector : MonoBehaviour
   {
     public Inventory Inventory;
-    [ReadOnly] public int SelectedSlotIndex = 0;
+    [ReadOnly] public int SelectedSlotIndex;
     public int2 inventoryRange;
     public Creature creature;
     public TextMeshProUGUI SlotText;
-    public Action<Slot> SlotSwitched;
-    public Action<int,int> SlotSwitchedIndexes;
-    
-    private GameInput _gameInput;
 
-    [Inject]
-    private void Inject(GameInput gameInput)
-    {
-      _gameInput = gameInput;
-    }
-    
-    private void Init()
-    {
-      Inventory.OnSlotUpdated += SlotUpdate;
-      _gameInput.Player.ScrollWheel.started += SwitchSlot;
-    }
+    private GameInput _gameInput;
+    public Action<Slot> SlotSwitched;
+    public Action<int, int> SlotSwitchedIndexes;
 
     private void Start()
     {
@@ -47,10 +34,22 @@ namespace ProjectContent.Code.MonoBehaviours
       _gameInput.Player.ScrollWheel.started -= SwitchSlot;
     }
 
+    [Inject]
+    private void Inject(GameInput gameInput)
+    {
+      _gameInput = gameInput;
+    }
+
+    private void Init()
+    {
+      Inventory.OnSlotUpdated += SlotUpdate;
+      _gameInput.Player.ScrollWheel.started += SwitchSlot;
+    }
+
     private void SlotUpdate(int index)
     {
       if (index != SelectedSlotIndex) return;
-      
+
       UpdateView();
     }
 
@@ -75,12 +74,12 @@ namespace ProjectContent.Code.MonoBehaviours
         if (SelectedSlotIndex > inventoryRange.y)
           SelectedSlotIndex = inventoryRange.x;
       }
-    
+
       UpdateView();
       SlotSwitchedIndexes?.Invoke(oldIndex, SelectedSlotIndex);
       SlotSwitched?.Invoke(GetSelectedSlot());
     }
-    
+
     // МЕГА КОСТЫЛЬ!!!! ЧИСТО ДЛЯ ДЕБАГА
 
     private void UpdateView()

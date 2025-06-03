@@ -9,10 +9,11 @@ namespace ProjectContent.Code.MonoBehaviours.ZenjectInstallers
   {
     public LoadingScreen LoadingScreen;
     public CoroutineRunner CoroutineRunner;
+
     public override void InstallBindings()
     {
       Game.Clear();
-      
+
       Container.Bind<GameInput>().FromNew().AsSingle().NonLazy();
       Container.Bind<LoadingScreen>().FromInstance(LoadingScreen).AsSingle().NonLazy();
       Container.Bind<CoroutineRunner>().FromInstance(CoroutineRunner).AsSingle().NonLazy();

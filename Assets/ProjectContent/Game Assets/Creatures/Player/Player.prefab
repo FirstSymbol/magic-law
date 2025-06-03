@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1474872114153867136}
-  _creature: {fileID: 4475166580265409408}
-  spriteRenderer: {fileID: 9194174178900473223}
+  Creature: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
   RunCoastPerSec: 1
   SpeedModifier: 1
   DashCoast: 2
@@ -222,8 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35abd5efdd8d403b810867dc17342b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
-  direction: {x: 0, y: 0}
+  Angle: 0
+  Direction: {x: 0, y: 0}
+  Camera: {fileID: 0}
 --- !u!114 &4475166580265409408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,11 +262,11 @@ MonoBehaviour:
   <PlayerCraftingStation>k__BackingField: {fileID: 5483910644400289673}
   <FastInventory>k__BackingField: {fileID: 7736451759192257113}
   <MainInventory>k__BackingField: {fileID: 4356844406667493892}
+  <InventoryFastViewLinker>k__BackingField: {fileID: 5272596955285104377}
+  <InventoryMainViewLinker>k__BackingField: {fileID: 8728897178286081221}
   <Interaction>k__BackingField: {fileID: 6688534916679040389}
   <SlotSelector>k__BackingField: {fileID: 578875517843149165}
   <EquipItem>k__BackingField: {fileID: 536540131844956222}
-  <InventoryFastViewLinker>k__BackingField: {fileID: 5272596955285104377}
-  <InventoryMainViewLinker>k__BackingField: {fileID: 8728897178286081221}
 --- !u!114 &6688534916679040389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9315c52476f343d9bfac5b33e56b10cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 3159829527259195398}
+  Trigger: {fileID: 3159829527259195398}
 --- !u!114 &7736451759192257113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,20 +292,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slots>k__BackingField:
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
   SubInventory: {fileID: 4356844406667493892}
+  <Slots>k__BackingField:
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
 --- !u!114 &578875517843149165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f464b03836f549ca9213cb928beaa43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8082285963685450021}
+  Animator: {fileID: 8082285963685450021}
   Creature: {fileID: 4475166580265409408}
 --- !u!114 &5272596955285104377
 MonoBehaviour:
@@ -350,8 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryView: {fileID: 0}
-  inventory: {fileID: 7736451759192257113}
+  InventoryView: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!114 &187084879897008021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,48 +411,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slots>k__BackingField:
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
   SubInventory: {fileID: 0}
+  <Slots>k__BackingField:
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
+  - index: 0
+    Inventory: {fileID: 0}
 --- !u!114 &8728897178286081221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,8 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryView: {fileID: 0}
-  inventory: {fileID: 4356844406667493892}
+  InventoryView: {fileID: 0}
+  Inventory: {fileID: 0}
 --- !u!1 &6587848913188363278
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,13 +786,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340452015456446eb2c33f275e835cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookDirection: {fileID: 49944683668347046}
-  spriteRenderer: {fileID: 99669316119611811}
-  offset: 0.35
-  animator: {fileID: 1213637006175054745}
-  slotSelector: {fileID: 578875517843149165}
-  creature: {fileID: 4475166580265409408}
-  boxCollider2D: {fileID: 6801320975280304858}
+  LookDirection: {fileID: 49944683668347046}
+  SpriteRenderer: {fileID: 99669316119611811}
+  Offset: 0.35
+  Animator: {fileID: 1213637006175054745}
+  SlotSelector: {fileID: 578875517843149165}
+  Creature: {fileID: 4475166580265409408}
+  BoxCollider2D: {fileID: 6801320975280304858}
 --- !u!212 &99669316119611811
 SpriteRenderer:
   m_ObjectHideFlags: 0

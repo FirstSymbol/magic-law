@@ -10,7 +10,9 @@ namespace ProjectContent.Code.Csharps.Attributes
   [Serializable]
   public class SpeedAttribute : Attribute
   {
-    [field: SerializeField, ReadOnly] public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
+    [field: SerializeField]
+    [field: ReadOnly]
+    public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
       new()
       {
         { new TypeReference<StatBase>(typeof(Speed)), 1f }

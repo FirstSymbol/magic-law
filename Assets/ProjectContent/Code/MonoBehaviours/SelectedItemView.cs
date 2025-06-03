@@ -1,5 +1,4 @@
 ﻿using ProjectContent.Code.Csharps;
-using ProjectContent.Code.PrototypingFolder;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -12,17 +11,24 @@ namespace ProjectContent.Code.MonoBehaviours
     private CreatureFabric _creatureFabric;
     private SlotSelector _slotSelector;
 
-    [Inject]
-    private void Inject(CreatureFabric creatureFabric)
-    {
-      _creatureFabric = creatureFabric;
-    }
-
     private void Start()
     {
       if (_creatureFabric.Player != null)
         OnPlayerCreated();
       _creatureFabric.OnPlayerCreated += OnPlayerCreated;
+    }
+
+    private void OnDestroy()
+    {
+      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
+      if (_slotSelector is not null)
+        _slotSelector.SlotSwitched -= UpdateView;
+    }
+
+    [Inject]
+    private void Inject(CreatureFabric creatureFabric)
+    {
+      _creatureFabric = creatureFabric;
     }
 
     private void OnPlayerCreated()
@@ -37,13 +43,6 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       if (SlotText is not null)
         SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
-    }
-
-    private void OnDestroy()
-    {
-      _creatureFabric.OnPlayerCreated -= OnPlayerCreated;
-      if (_slotSelector is not null)
-        _slotSelector.SlotSwitched -= UpdateView;
     }
   }
 }

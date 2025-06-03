@@ -6,10 +6,11 @@ using UnityEngine;
 namespace ProjectContent.Code.ToolsAndExtentionsScripts.DictionarySerializer
 {
   [Serializable]
-  public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver, IEnumerable
+  public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver,
+    IEnumerable
   {
     [SerializeField] private List<SerializableKeyValuePair<TKey, TValue>> list = new();
-    
+
 
     public new int Count => base.Count;
 

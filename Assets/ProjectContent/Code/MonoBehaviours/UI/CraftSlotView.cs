@@ -22,22 +22,22 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       CraftStationView = craftStationView;
       CraftBundleIndex = craftBundleIndex;
     }
-    
-    new public void UpdateSlot(ItemConfig item)
+
+    public new void UpdateSlot(ItemConfig item)
     {
       if (item == null)
       {
         Hide();
       }
       else
-      { 
-        if (_isHide) 
+      {
+        if (_isHide)
           Show();
         ItemImage.sprite = item.Icon;
         CountText.text = "" + item.CraftCount;
       }
     }
-    
+
     public override void Show()
     {
       _isHide = true;
@@ -57,8 +57,10 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       if (CraftStationView != null)
       {
         CraftStationView.SelectedItem = new int2(CraftBundleIndex, Index);
-        CraftStationView.ItemCoastView.Connect(CraftStationView.CraftStation.CraftBundles[CraftBundleIndex].Items[Index]);
-        CraftStationView.DefaultSlotView.UpdateSlot(CraftStationView.CraftStation.CraftBundles[CraftBundleIndex].Items[Index]);
+        CraftStationView.ItemCoastView.Connect(
+          CraftStationView.CraftStation.CraftBundles[CraftBundleIndex].Items[Index]);
+        CraftStationView.DefaultSlotView.UpdateSlot(CraftStationView.CraftStation.CraftBundles[CraftBundleIndex]
+          .Items[Index]);
       }
     }
   }

@@ -3,7 +3,7 @@
 namespace ProjectContent.Code.Csharps
 {
   /// <summary>
-  /// Интерфейс для взаимодействия с сущностью(собой)
+  ///   Интерфейс для взаимодействия с сущностью(собой)
   /// </summary>
   public interface IInteractableEntity
   {

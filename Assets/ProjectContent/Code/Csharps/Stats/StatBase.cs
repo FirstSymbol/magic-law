@@ -6,13 +6,12 @@ namespace ProjectContent.Code.Csharps.Stats
   [Serializable]
   public abstract class StatBase
   {
-    public Action<StatBase> OnValueChanged {get; set;}
-    
     [field: SerializeField] public float Value { get; private set; }
     [field: SerializeField] public float MaxValue { get; private set; }
     public bool Active = true;
+    public Action<StatBase> OnValueChanged { get; set; }
 
-    public virtual void SetValue(float value)   
+    public virtual void SetValue(float value)
     {
       Value = value;
       OnValueChanged?.Invoke(this);
@@ -23,7 +22,7 @@ namespace ProjectContent.Code.Csharps.Stats
       Value -= value;
       if (Value < 0)
         Value = 0;
-      
+
       OnValueChanged?.Invoke(this);
     }
 
@@ -31,11 +30,10 @@ namespace ProjectContent.Code.Csharps.Stats
     {
       Value += value;
 
-      if (Value > MaxValue && MaxValue > 0) 
+      if (Value > MaxValue && MaxValue > 0)
         Value = MaxValue;
-      
+
       OnValueChanged?.Invoke(this);
     }
-  
   }
 }

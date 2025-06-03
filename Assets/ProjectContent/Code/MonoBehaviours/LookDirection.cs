@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
   public class LookDirection : MonoBehaviour
   {
-    public float Angle = 0f;
+    public float Angle;
     public Vector2 Direction;
     public Camera Camera;
 
@@ -15,7 +14,8 @@ namespace ProjectContent.Code.MonoBehaviours
       {
         Camera = Camera.main;
 #if DEBUG
-        Debug.LogWarning("LookDirection: Камер не найдена, по этому она была установлена в главную камеру по умолчанию!");
+        Debug.LogWarning(
+          "LookDirection: Камера не найдена, по этому она была установлена в главную камеру по умолчанию!");
 #endif
       }
     }
@@ -24,18 +24,16 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       var mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
       Angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
-      
-      float rad = Angle * Mathf.Deg2Rad;
-      float x = Mathf.Cos(rad);
-      float y = Mathf.Sin(rad);
-      
+
+      var rad = Angle * Mathf.Deg2Rad;
+      var x = Mathf.Cos(rad);
+      var y = Mathf.Sin(rad);
+
       Direction = new Vector2(x, y);
 
 #if DEBUG
       Debug.DrawRay(transform.position, mousePos, Color.red);
 #endif
-      
-      
     }
   }
 }

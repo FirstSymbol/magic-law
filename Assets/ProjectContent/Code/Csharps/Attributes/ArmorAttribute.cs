@@ -8,10 +8,10 @@ namespace ProjectContent.Code.Csharps.Attributes
 {
   public class ArmorAttribute : Attribute
   {
-
-    
-    [field: SerializeField, ReadOnly] public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
-      new ()
+    [field: SerializeField]
+    [field: ReadOnly]
+    public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
+      new()
       {
         { new TypeReference<StatBase>(typeof(Armor)), 1f }
       };

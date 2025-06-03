@@ -8,6 +8,7 @@
     {
       StateMachine = stateMachine;
     }
+
     public abstract void Exit();
   }
 }

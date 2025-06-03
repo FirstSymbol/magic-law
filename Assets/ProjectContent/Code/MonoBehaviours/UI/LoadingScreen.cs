@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using TMPro;
-using TriInspector;
 using UnityEngine;
 
 namespace ProjectContent.Code.MonoBehaviours.UI
@@ -10,7 +9,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     [SerializeField] private string _loadingText = "LOADING";
     public TextMeshProUGUI LoadingComp;
     public Canvas LoadingCanvas;
-    private WaitForSeconds _waitForSeconds = new WaitForSeconds(0.33f);
+    private readonly WaitForSeconds _waitForSeconds = new(0.33f);
 
     public void Show()
     {

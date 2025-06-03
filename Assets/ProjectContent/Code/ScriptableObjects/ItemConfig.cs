@@ -17,17 +17,17 @@ namespace ProjectContent.Code.ScriptableObjects
     public Sprite Icon;
     public int MaxCount = 32;
     public RuntimeAnimatorController AnimatorController;
-    public List<CraftElement> craftCoats = new List<CraftElement>();
+    public List<CraftElement> craftCoats = new();
     public GameObject Prefab;
-    
-    [SerializeReference] public List<UsageAction> usageActions = new List<UsageAction>();
-    [SerializeReference] public List<UsageAction> alternateUsageActions = new List<UsageAction>();
-    [SerializeReference] public List<Attribute> attributes = new List<Attribute>();
+
+    [SerializeReference] public List<UsageAction> usageActions = new();
+    [SerializeReference] public List<UsageAction> alternateUsageActions = new();
+    [SerializeReference] public List<Attribute> attributes = new();
 
     public void Drop(Vector3 position, int amount)
     {
-      GameObject item = Instantiate(Prefab, position, Quaternion.identity);
-      ItemObject itemObject = item.GetComponent<ItemObject>();
+      var item = Instantiate(Prefab, position, Quaternion.identity);
+      var itemObject = item.GetComponent<ItemObject>();
       itemObject.Initialize(this, amount);
     }
   }

@@ -1,7 +1,6 @@
 ﻿using ProjectContent.Code.Csharps.Architecture.States;
 using ProjectContent.Code.MonoBehaviours.Architecture;
 using ProjectContent.Code.MonoBehaviours.UI;
-using Zenject;
 
 namespace ProjectContent.Code.Csharps.Architecture
 {
@@ -15,11 +14,12 @@ namespace ProjectContent.Code.Csharps.Architecture
       StateMachine = null;
       CoroutineRunner = null;
     }
+
     public static void Initialize(CoroutineRunner coroutineRunner, LoadingScreen ls)
     {
       Clear();
       CoroutineRunner = coroutineRunner;
-      StateMachine = new GameStateMachine(CoroutineRunner,ls);
+      StateMachine = new GameStateMachine(CoroutineRunner, ls);
       StateMachine.Enter<InitialState>();
     }
   }

@@ -7,6 +7,6 @@
     WhenItAlternateUsed = 5,
     WhenInHand = 2,
     WhenInArmor = 3,
-    WhenInInventory = 4,
+    WhenInInventory = 4
   }
 }

@@ -10,7 +10,8 @@ namespace ProjectContent.Code.Csharps.Attributes
   [Serializable]
   public class DamageAttribute : Attribute
   {
-    [field: SerializeField, ReadOnly]
+    [field: SerializeField]
+    [field: ReadOnly]
     public override SerializableDictionary<TypeReference<StatBase>, float> InteractionTypes { get; protected set; } =
       new();
   }

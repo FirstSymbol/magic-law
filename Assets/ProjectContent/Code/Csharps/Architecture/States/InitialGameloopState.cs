@@ -7,6 +7,7 @@ namespace ProjectContent.Code.Csharps.Architecture.States
   public class InitialGameloopState : DefaultState
   {
     private DiContainer _sceneContainer;
+
     public InitialGameloopState(StateMachineBase stateMachine) : base(stateMachine)
     {
     }

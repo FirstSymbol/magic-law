@@ -3,7 +3,7 @@
 namespace ProjectContent.Code.Csharps
 {
   /// <summary>
-  /// Интерфейс использования предмета
+  ///   Интерфейс использования предмета
   /// </summary>
   public interface IKeepItems
   {

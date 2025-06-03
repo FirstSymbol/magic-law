@@ -6,6 +6,6 @@
     Tool,
     Weapon,
     Consumable,
-    Material,
+    Material
   }
 }

@@ -1,10 +1,9 @@
-﻿using ProjectContent.Code.MonoBehaviours.UI;
-
-namespace ProjectContent.Code.PrototypingFolder.UI
+﻿namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class FastPanelWindow : UIWindow
   {
     public InventoryView InventoryView;
+
     public override void Initialize()
     {
       gameObject.SetActive(true);
@@ -12,7 +11,6 @@ namespace ProjectContent.Code.PrototypingFolder.UI
 
     public override void Toggle()
     {
-      
     }
   }
 }

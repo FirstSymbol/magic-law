@@ -3,13 +3,12 @@ using ProjectContent.Code.Csharps;
 using ProjectContent.Code.Csharps.Attributes;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static ProjectContent.Code.Csharps.Enums.ConstValues.Animation;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
   /// <summary>
-  /// Класс управления взятым предметом. Отвечает за его отображение, анимации и прочее.
+  ///   Класс управления взятым предметом. Отвечает за его отображение, анимации и прочее.
   /// </summary>
   [RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
   [RequireComponent(typeof(Animator))]
@@ -23,14 +22,14 @@ namespace ProjectContent.Code.MonoBehaviours
     public Creature Creature;
     public BoxCollider2D BoxCollider2D;
 
+    [NonSerialized] private Slot _equippedItem;
+    [NonSerialized] private SlotData _lastEquippedItemData;
+
     public Action<Slot> OnItemAlternativeUsed;
     public Action<Slot> OnItemEquipped;
     public Action<Slot> OnItemMainUsed;
     public Action<Slot> OnItemUnequipped;
 
-    [NonSerialized] private Slot _equippedItem;
-    [NonSerialized] private SlotData _lastEquippedItemData;
-    
     private void Start()
     {
       UpdateItemVisual();
@@ -69,23 +68,19 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private void OnSlotSetted(int index)
     {
-      if (index == SlotSelector.SelectedSlotIndex)
-      {
-        EquipmentAndUnequip(_equippedItem);
-      }//
+      if (index == SlotSelector.SelectedSlotIndex) EquipmentAndUnequip(_equippedItem); //
     }
+
     private void OnSlotFill(int index)
     {
-      if (index == SlotSelector.SelectedSlotIndex)
-      {
-        EquipmentItem(_equippedItem);
-      }
+      if (index == SlotSelector.SelectedSlotIndex) EquipmentItem(_equippedItem);
     }
+
     private void ItemSwitched(Slot slot)
     {
       EquipmentAndUnequip(slot);
     }
-    
+
     private void EquipmentSlotSet(Slot B)
     {
       EquipmentAndUnequip(B);
@@ -95,15 +90,15 @@ namespace ProjectContent.Code.MonoBehaviours
     {
       if (_lastEquippedItemData != null)
         UnequipmentItem();
-      
+
       EquipmentItem(slot);
     }
-    
+
     private void EquipmentItem(Slot slot)
     {
       _equippedItem = slot;
       _lastEquippedItemData = slot.SlotData;
-      
+
       // Логика с атрибутами
       if (_equippedItem.SlotData.Item != null)
         foreach (var attribute in _equippedItem.SlotData.Item.attributes)
@@ -128,7 +123,8 @@ namespace ProjectContent.Code.MonoBehaviours
           if (attribute.ActiveTypes.Contains(AttributeActiveType.WhenInHand))
             foreach (var stat in attribute.InteractionTypes.Keys)
               if (Creature.CreatureStats.stats.ContainsKey(stat.Type))
-                Creature.CreatureStats.stats[stat.Type].SubstractValue(attribute.Value * attribute.InteractionTypes[stat]);
+                Creature.CreatureStats.stats[stat.Type]
+                  .SubstractValue(attribute.Value * attribute.InteractionTypes[stat]);
       _lastEquippedItemData = null;
       _equippedItem = null;
       UpdateItemVisual();
@@ -171,7 +167,7 @@ namespace ProjectContent.Code.MonoBehaviours
       Animator.runtimeAnimatorController = _equippedItem.SlotData.Item.AnimatorController;
       SpriteRenderer.sprite = _equippedItem.SlotData.Item.Sprite;
     }
-    
+
     // Отражение предмета при поворотах
     private void UpdateMirror()
     {
@@ -180,7 +176,7 @@ namespace ProjectContent.Code.MonoBehaviours
       else if (LookDirection.Direction.x > 0)
         transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
     }
-    
+
     // Обновление позиции предмета
     private void UpdatePosition()
     {
