@@ -9,18 +9,20 @@ namespace ProjectContent.Code.MonoBehaviours
   public class Chest : Entity, IInteractableEntity
   {
     public Inventory Inventory;
-    public InventoryViewLinker InventoryViewLinker;
     private StorageWindow _storageWindow;
     private UIController _uiController;
+    private InventoryViewLinker _inventoryViewLinker;
 
-    private void Awake()
+    [Inject]
+    private void Inject(UIController uiController, InventoryViewLinker inventoryViewLinker)
     {
+      _uiController = uiController;
+      _inventoryViewLinker = inventoryViewLinker;
     }
 
     private void Start()
     {
       _storageWindow = _uiController.WindowsController.GetWindow<StorageWindow>();
-      InventoryViewLinker.InventoryView = _storageWindow.InventoryView;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -35,6 +37,7 @@ namespace ProjectContent.Code.MonoBehaviours
     }
 
     public GameObject InteractorObject { get; set; }
+
     public bool IsInteracting { get; set; }
 
     public void Interact(GameObject sender)
@@ -42,18 +45,12 @@ namespace ProjectContent.Code.MonoBehaviours
       Debug.Log("Interacting with Chest");
       // Открытие UI
       if (_storageWindow.IsOpened)
-        InventoryViewLinker.Unlink();
+        _inventoryViewLinker.Unlink();
       else
-        InventoryViewLinker.Link();
+        _inventoryViewLinker.Link(Inventory);
       _storageWindow.Toggle();
       InteractorObject = sender;
       IsInteracting = true;
-    }
-
-    [Inject]
-    private void Inject(UIController uiController)
-    {
-      _uiController = uiController;
     }
   }
 }

@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 7736451759192257113}
   - component: {fileID: 578875517843149165}
   - component: {fileID: 5537837484647614080}
-  - component: {fileID: 5272596955285104377}
   - component: {fileID: 187084879897008021}
   m_Layer: 7
   m_Name: Player
@@ -262,8 +261,8 @@ MonoBehaviour:
   <PlayerCraftingStation>k__BackingField: {fileID: 5483910644400289673}
   <FastInventory>k__BackingField: {fileID: 7736451759192257113}
   <MainInventory>k__BackingField: {fileID: 4356844406667493892}
-  <InventoryFastViewLinker>k__BackingField: {fileID: 5272596955285104377}
-  <InventoryMainViewLinker>k__BackingField: {fileID: 8728897178286081221}
+  <InventoryFastViewLinker>k__BackingField: {fileID: 0}
+  <InventoryMainViewLinker>k__BackingField: {fileID: 0}
   <Interaction>k__BackingField: {fileID: 6688534916679040389}
   <SlotSelector>k__BackingField: {fileID: 578875517843149165}
   <EquipItem>k__BackingField: {fileID: 536540131844956222}
@@ -339,20 +338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 8082285963685450021}
   Creature: {fileID: 4475166580265409408}
---- !u!114 &5272596955285104377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957826209934328523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryView: {fileID: 0}
-  Inventory: {fileID: 0}
 --- !u!114 &187084879897008021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5379150396208957416}
   - component: {fileID: 4356844406667493892}
-  - component: {fileID: 8728897178286081221}
   m_Layer: 0
   m_Name: Main Inventory
   m_TagString: Untagged
@@ -425,20 +409,6 @@ MonoBehaviour:
     Inventory: {fileID: 0}
   - index: 0
     Inventory: {fileID: 0}
---- !u!114 &8728897178286081221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3553162968745342141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryView: {fileID: 0}
-  Inventory: {fileID: 0}
 --- !u!1 &6587848913188363278
 GameObject:
   m_ObjectHideFlags: 0

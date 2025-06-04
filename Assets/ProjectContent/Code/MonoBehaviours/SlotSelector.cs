@@ -6,6 +6,7 @@ using TriInspector;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours
@@ -14,8 +15,8 @@ namespace ProjectContent.Code.MonoBehaviours
   {
     public Inventory Inventory;
     [ReadOnly] public int SelectedSlotIndex;
-    public int2 inventoryRange;
-    public Creature creature;
+    [FormerlySerializedAs("inventoryRange")] public int2 InventoryRange;
+    [FormerlySerializedAs("creature")] public Creature Creature;
     public TextMeshProUGUI SlotText;
 
     private GameInput _gameInput;
@@ -65,14 +66,14 @@ namespace ProjectContent.Code.MonoBehaviours
       if (scroll < 0)
       {
         SelectedSlotIndex -= 1;
-        if (SelectedSlotIndex < inventoryRange.x)
-          SelectedSlotIndex = inventoryRange.y;
+        if (SelectedSlotIndex < InventoryRange.x)
+          SelectedSlotIndex = InventoryRange.y;
       }
       else if (scroll > 0)
       {
         SelectedSlotIndex += 1;
-        if (SelectedSlotIndex > inventoryRange.y)
-          SelectedSlotIndex = inventoryRange.x;
+        if (SelectedSlotIndex > InventoryRange.y)
+          SelectedSlotIndex = InventoryRange.x;
       }
 
       UpdateView();

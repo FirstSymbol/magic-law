@@ -281,7 +281,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6131ff81-b054-480a-9250-547d8abfdec6"",
                     ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Hold(duration=0.4,pressPoint=0.5)"",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.5)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Run"",
