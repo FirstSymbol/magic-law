@@ -109,7 +109,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.42}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.35, y: 0.35}
   m_Direction: 0
 --- !u!212 &9194174178900473223
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &8082285963685450021
 Animator:
   serializedVersion: 7
@@ -319,10 +319,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 7736451759192257113}
   SelectedSlotIndex: 0
-  inventoryRange:
+  InventoryRange:
     x: 0
     y: 5
-  creature: {fileID: 4475166580265409408}
+  Creature: {fileID: 4475166580265409408}
   SlotText: {fileID: 0}
 --- !u!114 &5537837484647614080
 MonoBehaviour:
@@ -475,7 +475,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.01}
+  m_Offset: {x: 0, y: 0.4}
   m_Size: {x: 0.71, y: 0.92}
   m_Direction: 0
 --- !u!1 &7657275761093666775

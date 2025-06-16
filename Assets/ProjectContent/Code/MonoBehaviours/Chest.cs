@@ -14,14 +14,14 @@ namespace ProjectContent.Code.MonoBehaviours
     private InventoryViewLinker _inventoryViewLinker;
 
     [Inject]
-    private void Inject(UIController uiController, InventoryViewLinker inventoryViewLinker)
+    private void Inject(UIController uiController)
     {
       _uiController = uiController;
-      _inventoryViewLinker = inventoryViewLinker;
     }
 
     private void Start()
     {
+      _inventoryViewLinker = _uiController.InventoryViewLinker;
       _storageWindow = _uiController.WindowsController.GetWindow<StorageWindow>();
     }
 
