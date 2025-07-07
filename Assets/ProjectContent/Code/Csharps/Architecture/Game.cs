@@ -1,18 +1,26 @@
 ﻿using ProjectContent.Code.Csharps.Architecture.States;
 using ProjectContent.Code.MonoBehaviours.Architecture;
+using ProjectContent.Code.MonoBehaviours.UI;
 
 namespace ProjectContent.Code.Csharps.Architecture
 {
-  public class Game
+  public static class Game
   {
-    public GameStateMachine stateMachine;
-    public CoroutineRunner CoroutineRunner;
+    public static GameStateMachine StateMachine;
+    public static CoroutineRunner CoroutineRunner;
 
-    public Game(CoroutineRunner coroutineRunner)
+    public static void Clear()
     {
+      StateMachine = null;
+      CoroutineRunner = null;
+    }
+
+    public static void Initialize(CoroutineRunner coroutineRunner, LoadingScreen ls)
+    {
+      Clear();
       CoroutineRunner = coroutineRunner;
-      stateMachine = new GameStateMachine(CoroutineRunner);
-      stateMachine.Enter<InitialState>();
+      StateMachine = new GameStateMachine(CoroutineRunner, ls);
+      StateMachine.Enter<InitialState>();
     }
   }
 }

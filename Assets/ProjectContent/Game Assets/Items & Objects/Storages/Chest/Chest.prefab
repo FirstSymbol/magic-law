@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 26394023159647216}
   - component: {fileID: 8655315706070654925}
   - component: {fileID: 8329464103592082146}
-  - component: {fileID: 3348423736232056317}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -229,7 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 8329464103592082146}
-  InventoryViewLinker: {fileID: 3348423736232056317}
 --- !u!114 &8329464103592082146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +240,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slots>k__BackingField:
+  SubInventory: {fileID: 0}
+  <Slots>k__BackingField:
   - index: 0
     Inventory: {fileID: 0}
   - index: 0
@@ -255,45 +254,3 @@ MonoBehaviour:
     Inventory: {fileID: 0}
   - index: 0
     Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
---- !u!114 &3348423736232056317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8523497118994628282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d1a91d012d4f29bdbc22042e63623d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryView: {fileID: 0}
-  inventory: {fileID: 8329464103592082146}

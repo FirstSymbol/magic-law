@@ -18,23 +18,25 @@ namespace ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer
     {
       EditorGUI.BeginProperty(position, label, property);
       var typeNameProperty = property.FindPropertyRelative("typeName");
-      string currentTypeName = typeNameProperty.stringValue;
+      var currentTypeName = typeNameProperty.stringValue;
 
-      Type baseType = fieldInfo.FieldType.GenericTypeArguments[0];
+      var baseType = fieldInfo.FieldType.GenericTypeArguments[0];
       var derivedTypes = GetDerivedTypes(baseType);
 
       // Формируем список отображаемых имён (только имя типа)
       var displayNames = derivedTypes.Select(t => new GUIContent(t.Name)).ToList();
       displayNames.Insert(0, NoneOption);
 
-      int selectedIndex = string.IsNullOrEmpty(currentTypeName) ? 0 : 
-        derivedTypes.FindIndex(t => t.AssemblyQualifiedName == currentTypeName) + 1;
+      var selectedIndex = string.IsNullOrEmpty(currentTypeName)
+        ? 0
+        : derivedTypes.FindIndex(t => t.AssemblyQualifiedName == currentTypeName) + 1;
 
       EditorGUI.BeginChangeCheck();
       selectedIndex = EditorGUI.Popup(position, label, selectedIndex, displayNames.ToArray());
       if (EditorGUI.EndChangeCheck())
       {
-        typeNameProperty.stringValue = selectedIndex == 0 ? null : derivedTypes[selectedIndex - 1].AssemblyQualifiedName;
+        typeNameProperty.stringValue =
+          selectedIndex == 0 ? null : derivedTypes[selectedIndex - 1].AssemblyQualifiedName;
         property.serializedObject.ApplyModifiedProperties();
       }
 
@@ -43,10 +45,7 @@ namespace ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer
 
     private static List<Type> GetDerivedTypes(Type baseType)
     {
-      if (CachedDerivedTypes.TryGetValue(baseType, out var types))
-      {
-        return types;
-      }
+      if (CachedDerivedTypes.TryGetValue(baseType, out var types)) return types;
 
       types = AppDomain.CurrentDomain.GetAssemblies()
         .SelectMany(a => a.GetTypes())

@@ -14,14 +14,26 @@ namespace ProjectContent.Code.MonoBehaviours
   public class SlotSelector : MonoBehaviour
   {
     public Inventory Inventory;
-    [ReadOnly] public int SelectedSlotIndex = 0;
-    public int2 inventoryRange;
-    public Creature creature;
+    [ReadOnly] public int SelectedSlotIndex;
+    [FormerlySerializedAs("inventoryRange")] public int2 InventoryRange;
+    [FormerlySerializedAs("creature")] public Creature Creature;
     public TextMeshProUGUI SlotText;
-    public Action<Slot> SlotSwitched;
-    public Action<int,int> SlotSwitchedIndexes;
-    
+
     private GameInput _gameInput;
+    public Action<Slot> SlotSwitched;
+    public Action<int, int> SlotSwitchedIndexes;
+
+    private void Start()
+    {
+      Init();
+      UpdateView();
+    }
+
+    private void OnDestroy()
+    {
+      Inventory.OnSlotUpdated -= SlotUpdate;
+      _gameInput.Player.ScrollWheel.started -= SwitchSlot;
+    }
 
     [Inject]
     private void Inject(GameInput gameInput)
@@ -29,35 +41,22 @@ namespace ProjectContent.Code.MonoBehaviours
       _gameInput = gameInput;
     }
 
-    private void OnEnable()
+    private void Init()
     {
       Inventory.OnSlotUpdated += SlotUpdate;
       _gameInput.Player.ScrollWheel.started += SwitchSlot;
     }
 
-    private void OnDisable()
-    {
-      Inventory.OnSlotUpdated -= SlotUpdate;
-      _gameInput.Player.ScrollWheel.started -= SwitchSlot;
-    }
-
-    private void Start()
-    {
-      UpdateView();
-    }
-
     private void SlotUpdate(int index)
     {
       if (index != SelectedSlotIndex) return;
-      
+
       UpdateView();
-      //SlotSwitched?.Invoke(GetSelectedSlot());
-      //SlotSwitchedIndexes?.Invoke(SelectedSlotIndex, SelectedSlotIndex);
     }
 
     public Slot GetSelectedSlot()
     {
-      return Inventory.slots[SelectedSlotIndex];
+      return Inventory.Slots[SelectedSlotIndex];
     }
 
     private void SwitchSlot(InputAction.CallbackContext obj)
@@ -67,27 +66,28 @@ namespace ProjectContent.Code.MonoBehaviours
       if (scroll < 0)
       {
         SelectedSlotIndex -= 1;
-        if (SelectedSlotIndex < inventoryRange.x)
-          SelectedSlotIndex = inventoryRange.y;
+        if (SelectedSlotIndex < InventoryRange.x)
+          SelectedSlotIndex = InventoryRange.y;
       }
       else if (scroll > 0)
       {
         SelectedSlotIndex += 1;
-        if (SelectedSlotIndex > inventoryRange.y)
-          SelectedSlotIndex = inventoryRange.x;
+        if (SelectedSlotIndex > InventoryRange.y)
+          SelectedSlotIndex = InventoryRange.x;
       }
-    
+
       UpdateView();
       SlotSwitchedIndexes?.Invoke(oldIndex, SelectedSlotIndex);
       SlotSwitched?.Invoke(GetSelectedSlot());
     }
-    
+
     // МЕГА КОСТЫЛЬ!!!! ЧИСТО ДЛЯ ДЕБАГА
 
     private void UpdateView()
     {
       var t = GetSelectedSlot();
-      SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
+      if (SlotText is not null)
+        SlotText.text = "Selected slot: " + (t.SlotData.Item == null ? "Null" : t.SlotData.Item.Name);
     }
   }
 }

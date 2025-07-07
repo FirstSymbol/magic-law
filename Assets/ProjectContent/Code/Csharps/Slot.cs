@@ -1,22 +1,25 @@
 ﻿using System;
-using UnityEngine.Rendering.Universal;
+using ProjectContent.Code.MonoBehaviours;
 
 namespace ProjectContent.Code.Csharps
 {
+  /// <summary>
+  ///   Класс хранилища предмета(слота) со всеми его настройками.
+  /// </summary>
   [Serializable]
   public class Slot
   {
     public int index;
-    public SlotData SlotData { get; private set; }
-    public Action<int> OnSlotUpdated;
+    public Inventory Inventory;
     public Action<int> OnSlotSet;
 
     /// <summary>
     ///   Slot1 - A Slot; Slot2 - B Slot.
     /// </summary>
-    public Action<Slot,Slot> OnSlotSwap;
-    public Inventory Inventory;
-    
+    public Action<Slot, Slot> OnSlotSwap;
+
+    public Action<int> OnSlotUpdated;
+
     public Slot(Inventory inventory, int index)
     {
       SlotData = new SlotData(this);
@@ -31,12 +34,19 @@ namespace ProjectContent.Code.Csharps
     {
       SlotData = new SlotData(this);
     }
-    
+
+    public SlotData SlotData { get; private set; }
+
     public void InvokeOnSlotUpdated(int slotIndex)
     {
       OnSlotUpdated?.Invoke(slotIndex);
     }
 
+    /// <summary>
+    ///   Установка произвольных данных в слот.
+    /// </summary>
+    /// <param name="slotData"></param>
+    /// <param name="t"></param>
     private void SetData(SlotData slotData, bool t = true)
     {
       SlotData.SlotDataChanged -= InvokeOnSlotUpdated;
@@ -47,9 +57,14 @@ namespace ProjectContent.Code.Csharps
       OnSlotUpdated?.Invoke(index);
     }
 
+    /// <summary>
+    ///   Помять данные слота местами.
+    /// </summary>
+    /// <param name="slotA"></param>
+    /// <param name="slotB"></param>
     public static void SwapData(Slot slotA, Slot slotB)
     {
-      SlotData tempSlot = slotA.SlotData;
+      var tempSlot = slotA.SlotData;
       slotA.SetData(slotB.SlotData);
       slotB.SetData(tempSlot);
     }

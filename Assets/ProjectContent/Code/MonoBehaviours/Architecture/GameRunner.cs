@@ -1,14 +1,18 @@
 ﻿using ProjectContent.Code.Csharps.Enums;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
-  public class GameRunner : UnityEngine.MonoBehaviour
+  /// <summary>
+  ///   Класс для начала игры, который всегда запускает со сцены инициализации.
+  /// </summary>
+  public class GameRunner : MonoBehaviour
   {
     private void Awake()
     {
-      if (SceneManager.GetActiveScene().name != ConstValues.Architecture.InitialScene) 
-        SceneManager.LoadScene(ConstValues.Architecture.InitialScene);
+      if (SceneManager.GetActiveScene().name != ConstValues.Scenes.InitialScene)
+        SceneManager.LoadScene(ConstValues.Scenes.InitialScene);
     }
   }
 }

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7736451759192257113}
   - component: {fileID: 578875517843149165}
   - component: {fileID: 5537837484647614080}
+  - component: {fileID: 187084879897008021}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -108,7 +109,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.42}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.35, y: 0.35}
   m_Direction: 0
 --- !u!212 &9194174178900473223
@@ -155,7 +156,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1882347247711912902, guid: 3c4ce5c0d0166e44f8e8c34a47c8085c, type: 3}
+  m_Sprite: {fileID: 8793639957104055765, guid: ad7f27314d15d744dbdcda14e14bfcd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -165,7 +166,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &8082285963685450021
 Animator:
   serializedVersion: 7
@@ -201,8 +202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1474872114153867136}
-  _creature: {fileID: 4475166580265409408}
-  spriteRenderer: {fileID: 9194174178900473223}
+  Creature: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
   RunCoastPerSec: 1
   SpeedModifier: 1
   DashCoast: 2
@@ -220,8 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35abd5efdd8d403b810867dc17342b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
-  direction: {x: 0, y: 0}
+  Angle: 0
+  Direction: {x: 0, y: 0}
+  Camera: {fileID: 0}
 --- !u!114 &4475166580265409408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
-  creatureStats:
+  CreatureStats:
     Health:
       <Value>k__BackingField: 1000
       <MaxValue>k__BackingField: 0
@@ -257,13 +259,13 @@ MonoBehaviour:
       <MaxValue>k__BackingField: 0
       Active: 1
   <PlayerCraftingStation>k__BackingField: {fileID: 5483910644400289673}
-  <FastInventory>k__BackingField: {fileID: 0}
-  <MainInventory>k__BackingField: {fileID: 0}
+  <FastInventory>k__BackingField: {fileID: 7736451759192257113}
+  <MainInventory>k__BackingField: {fileID: 4356844406667493892}
+  <InventoryFastViewLinker>k__BackingField: {fileID: 0}
+  <InventoryMainViewLinker>k__BackingField: {fileID: 0}
   <Interaction>k__BackingField: {fileID: 6688534916679040389}
   <SlotSelector>k__BackingField: {fileID: 578875517843149165}
   <EquipItem>k__BackingField: {fileID: 536540131844956222}
-  <InventoryFastViewLinker>k__BackingField: {fileID: 0}
-  <InventoryFastMainLinker>k__BackingField: {fileID: 0}
 --- !u!114 &6688534916679040389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9315c52476f343d9bfac5b33e56b10cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 3159829527259195398}
+  Trigger: {fileID: 3159829527259195398}
 --- !u!114 &7736451759192257113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slots>k__BackingField:
+  SubInventory: {fileID: 4356844406667493892}
+  <Slots>k__BackingField:
   - index: 0
     Inventory: {fileID: 0}
   - index: 0
@@ -316,10 +319,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 7736451759192257113}
   SelectedSlotIndex: 0
-  inventoryRange:
+  InventoryRange:
     x: 0
-    y: 9
-  creature: {fileID: 4475166580265409408}
+    y: 5
+  Creature: {fileID: 4475166580265409408}
   SlotText: {fileID: 0}
 --- !u!114 &5537837484647614080
 MonoBehaviour:
@@ -333,8 +336,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f464b03836f549ca9213cb928beaa43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8082285963685450021}
+  Animator: {fileID: 8082285963685450021}
   Creature: {fileID: 4475166580265409408}
+--- !u!114 &187084879897008021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957826209934328523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
 --- !u!1 &3553162968745342141
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,35 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cf223dbf394f3f98463c1ccdcb34e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slots>k__BackingField:
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
-  - index: 0
-    Inventory: {fileID: 0}
+  SubInventory: {fileID: 0}
+  <Slots>k__BackingField:
   - index: 0
     Inventory: {fileID: 0}
   - index: 0
@@ -430,9 +419,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7534009010087529930}
   - component: {fileID: 8342998018165857764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BodyTrigger
-  m_TagString: Untagged
+  m_TagString: BodyTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,7 +475,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.01}
+  m_Offset: {x: 0, y: 0.4}
   m_Size: {x: 0.71, y: 0.92}
   m_Direction: 0
 --- !u!1 &7657275761093666775
@@ -719,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CraftBundles:
   - {fileID: 11400000, guid: ddd20b4e7986ed04c887544b375969d7, type: 2}
-  _interactorInventory: {fileID: 4356844406667493892}
+  _interactorInventory: {fileID: 7736451759192257113}
 --- !u!1 &8811365944854709155
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,13 +756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340452015456446eb2c33f275e835cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookDirection: {fileID: 49944683668347046}
-  spriteRenderer: {fileID: 99669316119611811}
-  offset: 0.35
-  animator: {fileID: 1213637006175054745}
-  slotSelector: {fileID: 578875517843149165}
-  creature: {fileID: 4475166580265409408}
-  boxCollider2D: {fileID: 6801320975280304858}
+  LookDirection: {fileID: 49944683668347046}
+  SpriteRenderer: {fileID: 99669316119611811}
+  Offset: 0.35
+  Animator: {fileID: 1213637006175054745}
+  SlotSelector: {fileID: 578875517843149165}
+  Creature: {fileID: 4475166580265409408}
+  BoxCollider2D: {fileID: 6801320975280304858}
 --- !u!212 &99669316119611811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -818,7 +807,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b957c5eca68225c4f9709ab82f9e9864, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -826,7 +815,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1213637006175054745

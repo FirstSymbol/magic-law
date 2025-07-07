@@ -7,7 +7,5 @@
     }
 
     public abstract void Enter(TPayload payload);
-
   }
-  
-}   
+}

@@ -10,6 +10,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     public SerializableDictionary<TypeReference<UIWindow>, UIWindow> Windows;
     public HashSet<UIWindow> OpenedWindows { get; } = new();
 
+
     private void Start()
     {
       foreach (var window in Windows.Values) window.Initialize();
@@ -20,7 +21,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       UIWindow uiWindow = null;
 
       uiWindow = GetWindow<T>();
-      
+
       if (!uiWindow.IsOpened)
       {
         uiWindow.Open();
@@ -30,14 +31,12 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 
     public T GetWindow<T>() where T : UIWindow
     {
-      foreach (TypeReference<UIWindow> windowsKey in Windows.Keys)
-      {
+      foreach (var windowsKey in Windows.Keys)
         if (windowsKey.Type == typeof(T))
         {
-          UIWindow window = Windows[windowsKey];
+          var window = Windows[windowsKey];
           return window as T;
         }
-      }
 
       throw new KeyNotFoundException();
     }

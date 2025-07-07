@@ -8,13 +8,12 @@ namespace ProjectContent.Code.Csharps.Architecture.StateMachine
   {
     protected ExitableState ActiveState { get; set; }
     protected Dictionary<Type, ExitableState> _states { get; set; }
-    
-    public StateMachineBase(){}
 
     public void Enter<TState>() where TState : DefaultState
     {
       ChangeState<TState>();
     }
+
     public void Enter<TState, TPayload>(TPayload payload) where TState : PayloadState<TPayload>
     {
       ChangeState<TState, TPayload>(payload);

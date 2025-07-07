@@ -8,7 +8,7 @@ namespace ProjectContent.Game_Assets.Creatures.Dummy.Scripts
   {
     public void TakeDamage(float damage, GameObject sender = null)
     {
-      creatureStats.stats[typeof(Health)].SubstractValue(damage);
+      CreatureStats.stats[typeof(Health)].SubstractValue(damage);
     }
   }
 }

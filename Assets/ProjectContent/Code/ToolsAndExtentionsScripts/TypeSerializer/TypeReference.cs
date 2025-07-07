@@ -6,18 +6,24 @@ namespace ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer
   [Serializable]
   public class TypeReference<T> : ISerializationCallbackReceiver
   {
-    [SerializeField]
-    private string typeName;
+    [SerializeField] private string typeName;
 
     private Type _type;
+
+    public TypeReference()
+    {
+    }
+
+    public TypeReference(Type type)
+    {
+      Type = type;
+    }
+
     public Type Type
     {
       get
       {
-        if (_type == null && !string.IsNullOrEmpty(typeName))
-        {
-          _type = Type.GetType(typeName);
-        }
+        if (_type == null && !string.IsNullOrEmpty(typeName)) _type = Type.GetType(typeName);
         return _type;
       }
       set
@@ -34,9 +40,6 @@ namespace ProjectContent.Code.ToolsAndExtentionsScripts.TypeSerializer
         }
       }
     }
-
-    public TypeReference() { }
-    public TypeReference(Type type) => Type = type;
 
     // Реализация ISerializationCallbackReceiver
     public void OnBeforeSerialize()

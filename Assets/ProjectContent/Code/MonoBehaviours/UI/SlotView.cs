@@ -16,13 +16,17 @@ namespace ProjectContent.Code.MonoBehaviours.UI
     public bool IsSelected;
     protected bool _isHide;
     protected UIController _uiController;
-   
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+    }
+
     [Inject]
     private void Inject(UIController uiController)
     {
       _uiController = uiController;
     }
-    
+
     public void UpdateSlot(Slot slot)
     {
       if (slot.SlotData.Item == null)
@@ -31,13 +35,13 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       }
       else
       {
-        if (_isHide) 
+        if (_isHide)
           Show();
         ItemImage.sprite = slot.SlotData.Item.Icon;
         CountText.text = "" + slot.SlotData.Count;
       }
     }
-    
+
     public virtual void Show()
     {
       _isHide = false;
@@ -51,7 +55,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       CountText.gameObject.SetActive(false);
       ItemImage.gameObject.SetActive(false);
     }
-    
+
     public void Select(bool selected)
     {
       if (selected)
@@ -65,6 +69,5 @@ namespace ProjectContent.Code.MonoBehaviours.UI
         SelectedImage.gameObject.SetActive(false);
       }
     }
-    public virtual void OnPointerClick(PointerEventData eventData){}
   }
 }

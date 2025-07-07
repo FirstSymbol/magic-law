@@ -5,12 +5,12 @@ namespace ProjectContent.Code.MonoBehaviours.UI
 {
   public class DefaultSlotView : SlotView
   {
-    
     public void Connect(int index)
     {
       Index = index;
     }
-    new public void UpdateSlot(ItemConfig item)
+
+    public new void UpdateSlot(ItemConfig item)
     {
       if (item == null)
       {
@@ -18,14 +18,14 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       }
       else
       {
-        if (_isHide) 
+        if (_isHide)
           Show();
         ItemImage.sprite = item.Icon;
         CountText.text = "" + item.CraftCount;
       }
     }
-    
-    new public void UpdateSlot(CraftElement craftElement)
+
+    public new void UpdateSlot(CraftElement craftElement)
     {
       if (craftElement.Item == null)
       {
@@ -33,7 +33,7 @@ namespace ProjectContent.Code.MonoBehaviours.UI
       }
       else
       {
-        if (_isHide) 
+        if (_isHide)
           Show();
         ItemImage.sprite = craftElement.Item.Icon;
         CountText.text = "" + craftElement.Amount;

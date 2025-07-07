@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce9d6cb5f98340f08313565b9a822bba, type: 3}
-  m_Name: CraftBundle Test
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Main_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: 6d13e15d6bc90264db2893f60393a94c, type: 2}
-  - {fileID: 11400000, guid: a8feb30de50481d45a6e0446ff78fb05, type: 2}
+  m_Group: {fileID: 11400000, guid: 4e4ae3a9ab314974f80beaf00b1a8eb3, type: 2}
+  m_StaticContent: 0

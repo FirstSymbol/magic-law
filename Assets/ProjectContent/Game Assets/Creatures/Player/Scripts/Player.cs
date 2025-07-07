@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProjectContent.Code.Csharps;
 using ProjectContent.Code.MonoBehaviours;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using ProjectContent.Code.MonoBehaviours.UI;
-using ProjectContent.Code.PrototypingFolder;
-using ProjectContent.Code.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -15,21 +12,38 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
   public class Player : Creature, ICanInteract, IKeepItems
   {
     [field: SerializeField] public CraftStation PlayerCraftingStation { get; private set; }
-    
+
     [field: SerializeField] public Inventory FastInventory { get; private set; }
     [field: SerializeField] public Inventory MainInventory { get; private set; }
+
+    [field: SerializeField] public InventoryViewLinker InventoryFastViewLinker { get; private set; }
+    [field: SerializeField] public InventoryViewLinker InventoryMainViewLinker { get; private set; }
+    private CraftWindow _craftWindow;
     private GameInput _gameInput;
+    private UIController _uiController;
+
+    private void Start()
+    {
+      Init();
+    }
+
+    private void OnDestroy()
+    {
+      _gameInput.Player.LBM.started -= UseItem;
+      _gameInput.Player.RBM.started -= AlternateUseItem;
+      _gameInput.UI.OpenCraft.performed -= OpenCraft;
+    }
 
     [field: SerializeField] public Interaction Interaction { get; private set; }
+
+    public void Interact(GameObject target = null)
+    {
+      Debug.Log("Player interact with " + Interaction.GetCurrentInteraction().gameObject.name);
+    }
 
     [field: SerializeField] public SlotSelector SlotSelector { get; private set; }
 
     [field: SerializeField] public EquipItem EquipItem { get; private set; }
-    
-    [field: SerializeField] public InventoryViewLinker InventoryFastViewLinker { get; private set; }
-    [field: SerializeField] public InventoryViewLinker InventoryFastMainLinker { get; private set; }
-    private CraftWindow _craftWindow;
-    private UIController _uiController;
 
     [Inject]
     private void Inject(GameInput gameInput, UIController uiController)
@@ -38,38 +52,21 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
       _uiController = uiController;
     }
 
-    public void Interact(GameObject target = null)
-    {
-      Debug.Log("Player interact with " + Interaction.GetCurrentInteraction().gameObject.name);
-    }
-
-    private void OnEnable()
-    {
-      _gameInput.Player.LBM.started += UseItem;
-      _gameInput.Player.RBM.started += AlternateUseItem;
-      _gameInput.UI.OpenCraft.performed += OpenCraft;
-    }
-
     private void OpenCraft(InputAction.CallbackContext obj)
     {
       if (PlayerCraftingStation)
       {
-        
       }
     }
 
-    private void Start()
+    private void Init()
     {
-      InventoryFastViewLinker.Link();
-      InventoryFastMainLinker.Link();
-    }
+      _gameInput.Player.LBM.started += UseItem;
+      _gameInput.Player.RBM.started += AlternateUseItem;
+      _gameInput.UI.OpenCraft.performed += OpenCraft;
 
-    private void OnDisable()
-    {
-      _gameInput.Player.LBM.started -= UseItem;
-      _gameInput.Player.RBM.started -= AlternateUseItem;
-      InventoryFastViewLinker.Unlink();
-      InventoryFastMainLinker.Unlink();
+      _uiController.WindowsController.GetWindow<FastPanelWindow>().InventoryView.Connect(FastInventory);
+      _uiController.WindowsController.GetWindow<InventoryWindow>().InventoryView.Connect(MainInventory);
     }
 
 
@@ -107,6 +104,4 @@ namespace ProjectContent.Game_Assets.Creatures.Player.Scripts
         }
     }
   }
-
-  
 }

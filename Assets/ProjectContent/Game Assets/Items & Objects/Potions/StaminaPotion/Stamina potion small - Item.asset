@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Small stamina potion
   damage: 0
+  CraftCount: 1
   ItemType: 3
   Sprite: {fileID: -7354783358837723863, guid: 6b43d30707463d5419cf33d582cabeab, type: 3}
   Icon: {fileID: -7354783358837723863, guid: 6b43d30707463d5419cf33d582cabeab, type: 3}
   MaxCount: 32
   AnimatorController: {fileID: 0}
-  craftCoats: []
+  craftCoats:
+  - Item: {fileID: 11400000, guid: ff78c8107a1aa1b4897fbf893a023be5, type: 2}
+    Amount: 2
+  Prefab: {fileID: 0}
   usageActions:
   - rid: 235409974918643800
   alternateUsageActions: []

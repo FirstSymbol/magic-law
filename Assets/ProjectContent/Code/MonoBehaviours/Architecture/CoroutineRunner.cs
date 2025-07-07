@@ -1,6 +1,11 @@
-﻿namespace ProjectContent.Code.MonoBehaviours.Architecture
+﻿using UnityEngine;
+
+namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
-  public class CoroutineRunner : UnityEngine.MonoBehaviour
+  /// <summary>
+  ///   Пустой класс для запуска корутин.
+  /// </summary>
+  public class CoroutineRunner : MonoBehaviour
   {
   }
 }

@@ -1,36 +1,34 @@
 ﻿using ProjectContent.Code.Csharps.Architecture;
+using ProjectContent.Code.MonoBehaviours.UI;
 using UnityEngine;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours.Architecture
 {
-  public class InitialBootstrapper : UnityEngine.MonoBehaviour
+  /// <summary>
+  ///   Скрипт инициализации, который запускается в сцене инициализации.
+  /// </summary>
+  public class InitialBootstrapper : MonoBehaviour
   {
     private ProjectContext _context;
-    private DiContainer _container;
 
-    public GameObject coroutineRunnerPrefab;
 
     private CoroutineRunner _coroutineRunner;
     private GameInput _gameInput;
-    [Inject]
-    private void Inject(GameInput input)
-    {
-      _gameInput = input;
-    }
+    [Inject] private LoadingScreen _loadingScreen;
+
     private void Awake()
     {
-      _context = ProjectContext.Instance;
-      _container = _context.Container;
-
-      _coroutineRunner = Instantiate(coroutineRunnerPrefab,_context.transform).GetComponent<CoroutineRunner>();
-      _container.Bind<CoroutineRunner>().FromInstance(_coroutineRunner).AsSingle().NonLazy();
-      
       _gameInput.Enable();
-      
-      Game game = new Game(_coroutineRunner);
-      _container.Bind<Game>().FromInstance(game).AsSingle().NonLazy();
-      
+
+      Game.Initialize(_coroutineRunner, _loadingScreen);
+    }
+
+    [Inject]
+    private void Inject(GameInput input, CoroutineRunner runner)
+    {
+      _gameInput = input;
+      _coroutineRunner = runner;
     }
   }
 }

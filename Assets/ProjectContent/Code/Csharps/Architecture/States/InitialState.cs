@@ -13,8 +13,8 @@ namespace ProjectContent.Code.Csharps.Architecture.States
     public override void Enter()
     {
       Debug.Log("[InitialState] Enter");
-      
-      StateMachine.Enter<LoadSceneState, string>(ConstValues.Architecture.GameloopScene);
+
+      StateMachine.Enter<LoadSceneState, string>(ConstValues.Scenes.MainMenu);
     }
 
     public override void Exit()

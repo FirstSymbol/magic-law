@@ -6,22 +6,22 @@ namespace ProjectContent.Code.MonoBehaviours.UI
   public class ItemSlotView : SlotView
   {
     public InventoryView InventoryView;
-    
+
     public void Connect(InventoryView inventoryView, int index)
     {
       Index = index;
       InventoryView = inventoryView;
     }
-    
+
     public override void OnPointerClick(PointerEventData eventData)
     {
       switch (eventData.button)
       {
         case PointerEventData.InputButton.Left:
-          
-          Slot dragSlot = _uiController.DragItems.DraggingSlot;
-          Inventory dragInventory = _uiController.DragItems.DraggingInventory;
-          Slot selfSlot = InventoryView.Inventory.slots[Index];
+
+          var dragSlot = _uiController.DragItems.DraggingSlot;
+          var dragInventory = _uiController.DragItems.DraggingInventory;
+          var selfSlot = InventoryView.Inventory.Slots[Index];
           if (dragSlot == null || dragSlot.SlotData.Item == null)
           {
             if (selfSlot.SlotData.Item != null)
@@ -41,25 +41,25 @@ namespace ProjectContent.Code.MonoBehaviours.UI
               else
               {
                 // Своп с драгбл слотом
-                SwapSlots( dragSlot);
+                SwapSlots(dragSlot);
               }
             }
             else
             {
-              SwapSlots( dragSlot);
+              SwapSlots(dragSlot);
             }
           }
-          
+
           break;
         case PointerEventData.InputButton.Right:
-          
+
           break;
       }
     }
 
     private void SwapSlots(Slot dragSlot)
     {
-      Slot.SwapData(InventoryView.Inventory.slots[Index], dragSlot);
+      Slot.SwapData(InventoryView.Inventory.Slots[Index], dragSlot);
       _uiController.DragItems.DraggingSlot = null;
       _uiController.DragItems.DraggingInventory = null;
     }

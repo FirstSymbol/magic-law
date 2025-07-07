@@ -1,56 +1,38 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using ProjectContent.Code.MonoBehaviours.Creatures;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace ProjectContent.Code.MonoBehaviours
 {
   [RequireComponent(typeof(Rigidbody2D))]
-  public class Movement : UnityEngine.MonoBehaviour
+  public class Movement : MonoBehaviour
   {
-    private MovementController _movementController;
+    private const float RunModifier = 1.5f;
     public Rigidbody2D Rigidbody;
-    public Creature _creature;
-    public SpriteRenderer spriteRenderer;
+    public Creature Creature;
+    public SpriteRenderer SpriteRenderer;
     public float RunCoastPerSec = 1f;
-    private readonly float RunModifier = 1.5f;
     [ReadOnly] public float SpeedModifier = 1f;
-    [ReadOnly] public int DashCoast = 2; 
+    [ReadOnly] public int DashCoast = 2;
     public float DashDistance = 1f;
     public float DashTime = 0.5f;
-    private GameInput _gameInput;
-    private WaitForSeconds _wait = new WaitForSeconds(1f);
+    private readonly WaitForSeconds _wait = new(1f);
     private Coroutine _coroutine;
+    private GameInput _gameInput;
     private bool _isDashing;
+    private MovementController _movementController;
 
-    [Inject]
-    private void Inject(MovementController movementController, GameInput gameInput)
-    {
-      _movementController = movementController;
-      _gameInput = gameInput;
-    }
-    
     private void Awake()
     {
-      _creature = GetComponent<Creature>();
+      Creature = GetComponent<Creature>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-      _gameInput.Player.Run.performed += StartRun;
-      _gameInput.Player.Run.canceled += StopRun;
-      _gameInput.Player.Dash.performed += Dash;
-    }
-
-    private void OnDisable()
-    {
-      _gameInput.Player.Run.performed -= StartRun;
-      _gameInput.Player.Run.canceled -= StopRun;
-      _gameInput.Player.Dash.performed -= Dash;
+      Init();
     }
 
     private void Update()
@@ -59,29 +41,49 @@ namespace ProjectContent.Code.MonoBehaviours
       Move();
     }
 
+    private void OnDestroy()
+    {
+      _gameInput.Player.Run.performed -= StartRun;
+      _gameInput.Player.Run.canceled -= StopRun;
+      _gameInput.Player.Dash.performed -= Dash;
+    }
+
+    [Inject]
+    private void Inject(MovementController movementController, GameInput gameInput)
+    {
+      _movementController = movementController;
+      _gameInput = gameInput;
+    }
+
+    private void Init()
+    {
+      _gameInput.Player.Run.performed += StartRun;
+      _gameInput.Player.Run.canceled += StopRun;
+      _gameInput.Player.Dash.performed += Dash;
+    }
+
     private void Move()
     {
-      if (_isDashing)
-      {
-        return;
-      }
-      Rigidbody.linearVelocity = _movementController.Velocity * _creature.creatureStats.Speed.Value * SpeedModifier;
+      if (_isDashing) return;
+      Rigidbody.linearVelocity = _movementController.Velocity * Creature.CreatureStats.Speed.Value * SpeedModifier;
     }
 
     private void Dash(InputAction.CallbackContext obj)
     {
-      if((_isDashing || _movementController.Velocity.magnitude == 0) && _creature.creatureStats.Stamina.Value > RunCoastPerSec) return;
-        StartCoroutine(Dashing());
+      if (_isDashing ||
+          _movementController.Velocity.magnitude == 0 ||
+          Creature.CreatureStats.Stamina.Value < RunCoastPerSec) return;
+      StartCoroutine(Dashing());
     }
 
     private IEnumerator Dashing()
     {
       _isDashing = true;
       float dashPower;
-      float timer = 0f;
-      Vector2 dashVector = _movementController.Velocity;
-      _creature.creatureStats.Stamina.SubstractValue(DashCoast);
-      
+      var timer = 0f;
+      var dashVector = _movementController.Velocity;
+      Creature.CreatureStats.Stamina.SubstractValue(DashCoast);
+
       while (timer < DashTime)
       {
         dashPower = DashDistance / DashTime;
@@ -89,16 +91,13 @@ namespace ProjectContent.Code.MonoBehaviours
         timer += Time.deltaTime;
         yield return null;
       }
+
       _isDashing = false;
     }
 
     private void StartRun(InputAction.CallbackContext obj)
     {
-      if (_creature.creatureStats.Stamina.Value > RunCoastPerSec)
-      {
-        _coroutine = StartCoroutine(RunCoroutine());
-      }
-      
+      if (Creature.CreatureStats.Stamina.Value > RunCoastPerSec) _coroutine = StartCoroutine(RunCoroutine());
     }
 
     private void StopRun(InputAction.CallbackContext obj)
@@ -109,27 +108,21 @@ namespace ProjectContent.Code.MonoBehaviours
 
     private IEnumerator RunCoroutine()
     {
-      while (_creature.creatureStats.Stamina.Value > RunCoastPerSec)
+      while (Creature.CreatureStats.Stamina.Value > RunCoastPerSec)
       {
-        _creature.creatureStats.Stamina.SubstractValue(RunCoastPerSec);
+        Creature.CreatureStats.Stamina.SubstractValue(RunCoastPerSec);
         SpeedModifier = RunModifier;
         yield return _wait;
       }
-      
+
       SpeedModifier = 1f;
-      
     }
 
     private void FlifByX()
     {
-      if (_movementController.Velocity.x < 0 && spriteRenderer != null)
-      {
-        spriteRenderer.flipX = true;
-      }
-      else if (_movementController.Velocity.x >= 0 && spriteRenderer != null)
-      {
-        spriteRenderer.flipX = false;
-      }
+      if (_movementController.Velocity.x < 0 && SpriteRenderer != null)
+        SpriteRenderer.flipX = true;
+      else if (_movementController.Velocity.x >= 0 && SpriteRenderer != null) SpriteRenderer.flipX = false;
     }
   }
 }

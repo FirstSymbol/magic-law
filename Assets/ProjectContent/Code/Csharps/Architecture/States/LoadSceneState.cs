@@ -1,58 +1,59 @@
 ﻿using System.Collections;
 using ProjectContent.Code.Csharps.Architecture.StateMachine;
 using ProjectContent.Code.MonoBehaviours.Architecture;
+using ProjectContent.Code.MonoBehaviours.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
-using AsyncOperation = UnityEngine.AsyncOperation;
 
 namespace ProjectContent.Code.Csharps.Architecture.States
 {
   public class LoadSceneState : PayloadState<string>
   {
-    CoroutineRunner _coroutineRunner;
+    private readonly CoroutineRunner _coroutineRunner;
+    private readonly LoadingScreen _loadingScreen;
+
+    public LoadSceneState(StateMachineBase stateMachine, CoroutineRunner coroutineRunner, LoadingScreen loadingScreen) :
+      base(stateMachine)
+    {
+      _coroutineRunner = coroutineRunner;
+      _loadingScreen = loadingScreen;
+    }
 
     [Inject]
     private void Inject()
     {
       Debug.Log("Inject");
     }
-    
-    public LoadSceneState(StateMachineBase stateMachine,CoroutineRunner coroutineRunner) : base(stateMachine)
-    {
-      _coroutineRunner = coroutineRunner;
-    }
 
     public override void Enter(string sceneName)
     {
       Debug.Log("[LoadSceneState] Enter");
-      
+
       _coroutineRunner.StartCoroutine(SceneLoading(sceneName));
-      
     }
 
-    IEnumerator SceneLoading(string sceneName)
+    private IEnumerator SceneLoading(string sceneName)
     {
       Debug.Log($"Loading scene {sceneName}...");
-      
-      AsyncOperation sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-      
+
+      var sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
       if (sceneAsync == null)
       {
         Debug.LogError($"Failed to load scene: {sceneName}");
         yield break;
       }
-      
-      sceneAsync.completed += (AsyncOperation _) =>
+
+      _loadingScreen.Show();
+      LoadingScreen loadingScreen;
+      sceneAsync.completed += _ =>
       {
         Debug.Log($"Scene {sceneName} successfully loaded!");
-        StateMachine.Enter<GameloopState>();
+        _loadingScreen.Hide();
       };
-      
-      while (!sceneAsync.isDone)
-      {
-        yield return null;
-      }
+
+      while (!sceneAsync.isDone) yield return null;
     }
 
     public override void Exit()
